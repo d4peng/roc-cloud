@@ -1,0 +1,11 @@
+roc:
+  auth:
+    enabled: true
+    types:
+      GITEE:
+        clientId: "xxx"
+        clientSecret: "xxx"
+        redirectUri: "xxx"
+        ignoreCheckState: true
+  token:
+    enabled: false

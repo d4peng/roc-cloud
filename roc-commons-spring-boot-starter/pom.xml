@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>roc-cloud</artifactId>
+        <groupId>icu.d4peng.cloud</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>roc-commons-spring-boot-starter</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>roc-core-spring-boot-starter</module>
+        <module>roc-mvc-spring-boot-starter</module>
+        <module>roc-captcha-spring-boot-starter</module>
+        <module>roc-cache-spring-boot-starter</module>
+        <module>roc-auth-spring-boot-starter</module>
+        <module>roc-db-spring-boot-starter</module>
+        <module>roc-message-spring-boot-starter</module>
+        <module>roc-log-spring-boot-starter</module>
+        <module>roc-http-spring-boot-starter</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+</project>

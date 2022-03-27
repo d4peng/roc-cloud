@@ -1,0 +1,59 @@
+roc:
+  db:
+    mybatis:
+      enabled: true
+      configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    druid:
+      driver-class-name: org.h2.Driver
+      url: jdbc:h2:mem:test
+      username: root
+      password: root
+      # 初始化大小
+      initial-size: 5
+      # 最小
+      min-idle: 5
+      # 最大
+      max-active: 20
+      # 获取连接时最大等待时间(单位毫秒)
+      max-wait: 60000
+      # 有两个含义：1) Destroy线程会检测连接的间隔时间，如果连接空闲时间大于等于minEvictableIdleTimeMillis则关闭物理连接。2) testWhileIdle的判断依据，详细看testWhileIdle属性的说明
+      time-between-eviction-runs-millis: 60000
+      # 连接保持空闲而不被驱逐的最小时间
+      min-evictable-idle-time-millis: 300000
+      # 用来检测连接是否有效的sql，要求是一个查询语句，常用select 'x'。
+      validation-query: SELECT 'x'
+      # 单位：秒,检测连接是否有效的超时时间。
+      validation-query-timeout: 1
+      # 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+      test-while-idle: true
+      # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-borrow: false
+      # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      test-on-return: false
+      # 是否缓存preparedStatement，也就是PSCache。
+      pool-prepared-statements: true
+      # 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。
+      max-pool-prepared-statement-per-connection-size: 20
+      stat:
+        web-stat-filter:
+          enabled: true
+          url-pattern: "*"
+          exclusions: ".js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
+        stat-view-servlet:
+          enabled: true
+          url-pattern: "/druid/*"
+          # IP 白名单，没有配置或者为空，则允许所有访问
+          allow: "127.0.0.1"
+          # IP 黑名单，若白名单也存在，则优先使用
+          deny: "192.168.0.1"
+          # 禁用 HTML 中 Reset All 按钮
+          reset-enable: true
+          # 登录用户名/密码
+          login-username: "roc"
+          login-password: "roc"
+      # filter相关配置
+      filter:
+        stat:
+          enabled: false
+  spring.shard

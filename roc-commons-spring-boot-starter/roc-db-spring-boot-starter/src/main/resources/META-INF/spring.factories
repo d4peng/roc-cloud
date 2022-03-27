@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+icu.d4peng.cloud.common.db.MybatisPlusAutoConfiguration,\
+icu.d4peng.cloud.common.db.DruidDataSourceAutoConfiguration

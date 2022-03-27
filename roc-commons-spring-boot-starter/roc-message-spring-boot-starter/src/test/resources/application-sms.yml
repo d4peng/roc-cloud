@@ -1,0 +1,9 @@
+roc:
+  email:
+    enabled: false
+  sms:
+    enabled: true
+    access-key-id: "xx"
+    access-key-secret: "xxx"
+    sign-name: "xxx"
+    template-code: "xxx"

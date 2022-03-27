@@ -1,0 +1,40 @@
+roc:
+  cache:
+    enabled: true
+    # 广播:无
+    broadcast: none
+    # L1缓存名称
+    l1-cache-name: caffeine
+    l1-cache-properties:
+      region.default: 1000, 1s
+      region.test: 1000, 1s
+      region.roc: 1000, 1s
+    # L2缓存名称
+    l2-cache-name: none
+    l2-cache-properties:
+      # 缓存类型:Generic(普通字符),Hash(哈希字符)
+      storage: generic
+      channel: j2cache
+      # schema:redis（单例），redis-cluster（集群模式）
+      scheme: redis
+      # 主机地址:如果是多个,就用,分割
+      hosts: 192.168.0.201:6379
+      # 链接密码
+      password: Roc@2022
+      # 使用数据库下标
+      database: 1
+      sentinelMasterId: 1
+      # 拓扑刷新
+      clusterTopologyRefresh: 3000
+      # 最大总计
+      maxTotal: 100
+      # 最大空闲
+      maxIdle: 8
+      # 最小空闲
+      minIdle: 0
+      # 默认超时时间
+      timeout: 10000
+    # 序列化类型
+    serialization: fastjson
+    sync-ttl-to-redis: true
+    default-cache-null-object: true

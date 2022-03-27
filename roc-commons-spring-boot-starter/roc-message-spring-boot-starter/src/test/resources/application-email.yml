@@ -1,0 +1,22 @@
+roc:
+  email:
+    #开启
+    enabled: true
+    #smtp服务器地址
+    host: "smtp.qq.com"
+    # 端口
+    port: 465
+    # 用户名
+    username: "d4peng@qq.com"
+    # 密码
+    password: "xxx"
+    # 服务类型
+    protocol: "smtps"
+    # 字符集
+    default-encoding: UTF-8
+    # 模板前缀
+    template-prefix: "src/test/resources/templates/"
+    # 模板后缀
+    template-suffix: ".html"
+  sms:
+    enabled: false

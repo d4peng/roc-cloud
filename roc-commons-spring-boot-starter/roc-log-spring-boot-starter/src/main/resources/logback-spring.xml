@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="false" scanPeriod="10 seconds">
+
+    <!-- 日志级别:TRACE < DEBUG < INFO < WARN < ERROR < FATAL -->
+    <springProperty scope="context" name="springAppName" source="spring.application.name" defaultValue="default"/>
+    <springProperty scope="context" name="logPath" source="roc.log.path" defaultValue="default"/>
+    <!-- 日志编码格式 -->
+    <property name="ENCODING" value="UTF-8"/>
+    <!-- 日志存储位置 -->
+    <property name="PATH" value="/opt/logs/roc/${springAppName}"/>
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+    <!-- 控制台日志输出格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="${CONSOLE_LOG_PATTERN:-%clr(%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr([%X{roc}]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+    <!-- 文件日志输出格式 -->
+    <property name="FILE_LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss} %-6level %t %-40logger{39} : %m%n"/>
+    <!-- 控制台输出日志-->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!--定义控制台输出格式-->
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>${ENCODING}</charset>
+        </encoder>
+    </appender>
+
+    <!-- 文本记录日志 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>             <!-- 设置拦截的对象为INFO级别日志 -->
+            <onMatch>ACCEPT</onMatch>       <!-- 当遇到了INFO级别时，启用该段配置 -->
+            <onMismatch>DENY</onMismatch>   <!-- 没有遇到INFO级别日志时，屏蔽该段配置 -->
+        </filter>
+        <!-- 正在记录的日志文档的路径及文档名 -->
+        <file>${PATH}-info.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+            <charset>${ENCODING}</charset>
+        </encoder>
+        <!-- 日志文件最大的大小:当当前文件达到这个值会发请求给回滚 -->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>5MB</MaxFileSize>
+        </triggeringPolicy>
+        <!-- 按天回滚 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按天回滚 daily -->
+            <FileNamePattern>${PATH}-info.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!-- 日志文件保留天数 -->
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <!--root是默认的logger 这里设定输出级别是debug-->
+    <root level="INFO">
+        <!--定义了两个appender，日志会通过往这两个appender里面写-->
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

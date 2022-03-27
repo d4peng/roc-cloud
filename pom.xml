@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>icu.d4peng.cloud</groupId>
+    <artifactId>roc-cloud</artifactId>
+    <version>1.0.0</version>
+    <modules>
+        <module>roc-commons-spring-boot-starter</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <!-- 项目基础信息 -->
+    <name>roc-cloud</name>
+    <description>roc cloud base</description>
+    <url>https://github.com/d4peng/roc</url>
+
+    <!-- 开发者信息 -->
+    <developers>
+        <developer>
+            <id>d4peng</id>
+            <name>d4peng</name>
+            <email>d4peng@qq.com</email>
+            <url>https://www.d4peng.icu</url>
+        </developer>
+    </developers>
+
+    <!-- 许可证信息，根据自己的情况修改 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version2.0</name>
+            <url>https://www.apache.org/licenses/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!-- 托管仓库信息，根据自己的应用情况修改 -->
+    <scm>
+        <url>https://github.com/d4peng/roc</url>
+        <connection>scm:git:https://github.com/d4peng/roc.git</connection>
+        <developerConnection>https://www.d4peng.icu</developerConnection>
+        <tag>1.0.0</tag>
+    </scm>
+
+    <!-- 中央仓库地址配置信息 -->
+    <distributionManagement>
+        <repository>
+            <!-- 与settings.xml中server对应的id一致 -->
+            <id>release</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <!-- 与settings.xml中server对应的id一致 -->
+            <id>snapshot</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!-- 基础配置信息 -->
+    <properties>
+        <!-- 项目依赖信息 -->
+        <spring.boot.version>2.6.3</spring.boot.version>
+        <spring.cloud.version>2021.0.1</spring.cloud.version>
+        <alibaba.cloud.version>2021.0.1.0</alibaba.cloud.version>
+        <hutool.version>5.7.22</hutool.version>
+        <fastjson.version>1.2.79</fastjson.version>
+        <captcha.version>1.6.2</captcha.version>
+        <j2cache.version>2.8.4-release</j2cache.version>
+        <sa.token.version>1.29.0</sa.token.version>
+        <justauth.version>1.16.5</justauth.version>
+        <druid.version>1.2.8</druid.version>
+        <mybatis.plus.version>3.5.1</mybatis.plus.version>
+        <sharding.sphere.version>5.1.0</sharding.sphere.version>
+        <aliyun.sms.version>2.0.9</aliyun.sms.version>
+        <transmittable.version>2.9.0</transmittable.version>
+        <forest.version>1.5.16</forest.version>
+        <protobuf.version>3.14.0</protobuf.version>
+
+
+        <!-- 项目插件依赖信息 -->
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.source.version>2.2.1</maven.source.version>
+        <maven.doc.version>2.9.1</maven.doc.version>
+        <maven.staging.version>1.6.7</maven.staging.version>
+        <maven.gpg.version>1.5</maven.gpg.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot版本依赖管理 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- SpringCloud版本依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- SpringCloudAliBaBa依赖 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- Captcha工具 -->
+            <dependency>
+                <groupId>com.github.whvcse</groupId>
+                <artifactId>easy-captcha</artifactId>
+                <version>${captcha.version}</version>
+            </dependency>
+
+            <!-- 缓存组件 -->
+            <dependency>
+                <groupId>net.oschina.j2cache</groupId>
+                <artifactId>j2cache-core</artifactId>
+                <version>${j2cache.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.checkerframework</groupId>
+                        <artifactId>checker-qual</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.google.errorprone</groupId>
+                        <artifactId>error_prone_annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.javassist</groupId>
+                        <artifactId>javassist</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.alibaba</groupId>
+                        <artifactId>fastjson</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>jline</groupId>
+                        <artifactId>jline</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>redis.clients</groupId>
+                        <artifactId>jedis</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <artifactId>objenesis</artifactId>
+                        <groupId>org.objenesis</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- 认证中心 -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-servlet</artifactId>
+                <version>${sa.token.version}</version>
+            </dependency>
+
+            <!-- oauth -->
+            <dependency>
+                <groupId>cn.dev33</groupId>
+                <artifactId>sa-token-oauth2</artifactId>
+                <version>${sa.token.version}</version>
+            </dependency>
+
+            <!-- 第三方登录 -->
+            <dependency>
+                <groupId>me.zhyd.oauth</groupId>
+                <artifactId>JustAuth</artifactId>
+                <version>${justauth.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- Druid数据库连接池依赖 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- Mybatis Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+
+            <!-- 分库分表 -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core</artifactId>
+                <version>${sharding.sphere.version}</version>
+            </dependency>
+
+            <!-- 阿里云通信组件 -->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>dysmsapi20170525</artifactId>
+                <version>${aliyun.sms.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>org.jacoco.agent</artifactId>
+                        <groupId>org.jacoco</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- TTL组件 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable.version}</version>
+            </dependency>
+
+            <!-- 远程调用组件 -->
+            <dependency>
+                <groupId>com.dtflys.forest</groupId>
+                <artifactId>forest-core</artifactId>
+                <version>${forest.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dtflys.forest</groupId>
+                <artifactId>forest-spring</artifactId>
+                <version>${forest.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-core-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+
+
+    </dependencyManagement>
+
+    <build>
+        <!-- 插件管理 -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-parent</artifactId>
+                    <version>${spring.boot.version}</version>
+                </plugin>
+                <!-- 部署和发布插件 -->
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${maven.staging.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>release</serverId>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven.source.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven.doc.version}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- GPG签名插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${maven.gpg.version}</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

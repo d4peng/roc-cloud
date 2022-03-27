@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+icu.d4peng.cloud.common.mvc.MvcAutoConfiguration

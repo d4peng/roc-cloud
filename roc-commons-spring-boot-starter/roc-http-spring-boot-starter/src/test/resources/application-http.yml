@@ -1,0 +1,4 @@
+roc:
+  http:
+    enabled: true
+    bean-id: "roc"

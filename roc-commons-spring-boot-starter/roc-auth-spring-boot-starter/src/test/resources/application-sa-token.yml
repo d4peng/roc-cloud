@@ -1,0 +1,6 @@
+roc:
+  token:
+    enabled: true
+    token-prefix: roc
+  auth:
+    enabled: false

@@ -1,0 +1,21 @@
+spring:
+  sql:
+    init:
+      schema-locations:
+        - "classpath:db/schema.sql"
+      data-locations:
+        - "classpath:db/data.sql"
+  datasource:
+    driver-class-name: "org.h2.Driver"
+    url: "jdbc:h2:mem:test"
+    username: "root"
+    password: "root"
+roc:
+  db:
+    mybatis:
+      enabled: true
+      configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 这里如果关闭的话,需要在pom文件添加hikari依赖,不然会报错
+    druid:
+      enabled: false
