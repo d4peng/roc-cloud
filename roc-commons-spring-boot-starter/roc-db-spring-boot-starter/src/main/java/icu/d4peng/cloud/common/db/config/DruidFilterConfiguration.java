@@ -15,10 +15,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
 /**
- * @author d4peng
+ * <p> DruidFilterConfiguration:Filter配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 18:41
- * @description DruidFilterConfiguration:Filter配置
+ * @since 2022-03-27
  */
 public class DruidFilterConfiguration {
     private static final String FILTER_STAT_PREFIX = "roc.db.druid.filter.stat";

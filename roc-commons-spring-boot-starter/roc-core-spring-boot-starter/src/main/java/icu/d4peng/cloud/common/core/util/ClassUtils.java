@@ -14,10 +14,10 @@
 //import java.util.Map;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-24 18:13
-// * @description ClassUtils:Class工具类
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> ClassUtils:Class工具类
 // */
 //public class ClassUtils {
 //    private static final Logger LOGGER = LoggerFactory.getLogger(ClassUtils.class);

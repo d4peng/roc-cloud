@@ -7,10 +7,11 @@ import net.sf.jsqlparser.expression.StringValue;
 import java.util.List;
 
 /**
- * @author d4peng
+ * <p> DefaultTenantHandler:多租户处理器
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 17:29
- * @description DefaultTenantHandler:多租户处理器
+ * @since 2022-03-27
  */
 public class DefaultTenantHandler implements TenantLineHandler {
     private final String tenantId;

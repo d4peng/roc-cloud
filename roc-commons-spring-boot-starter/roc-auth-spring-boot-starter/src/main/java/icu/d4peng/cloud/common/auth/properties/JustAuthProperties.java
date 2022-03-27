@@ -10,10 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author d4peng
+ * <p> JustAuthProperties:三方认证配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-24 18:30
- * @description JustAuthProperties:三方认证配置
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)

@@ -1,19 +1,22 @@
 package icu.d4peng.cloud.common.message.properties;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.springframework.boot.autoconfigure.mail.MailProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author d4peng
+ * <p> EmailProperties:邮件的配置属性
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 15:40
- * @description EmailProperties:邮件的配置属性
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)
 @ConfigurationProperties(prefix = EmailProperties.PREFIX)
+@EqualsAndHashCode(callSuper = true)
 public class EmailProperties extends MailProperties {
     /**
      * 前缀名

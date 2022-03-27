@@ -1,17 +1,19 @@
 package icu.d4peng.cloud.common.log.generator.spanid;
 
 /**
- * @author d4peng
+ * <p> SpanIdGenerator:SpanId生成
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 14:03
- * @description SpanIdGenerator:SpanId生成
+ * @since 2022-03-27
  */
 public interface SpanIdGenerator {
 
     /**
-     * 这里防止同时获取一个spanId出现并发问题:这里用于微服务远程调用分离spanId
+     * 这里防止同时获取一个spanId出现并发问题
      *
-     * @return 下一个spanId
+     * @param spanId 当前spanId
+     * @return 下一个snapId
      */
     String generateNextSpanId(String spanId);
 

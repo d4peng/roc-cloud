@@ -11,10 +11,11 @@ import org.springframework.context.annotation.Bean;
 import javax.servlet.http.HttpServlet;
 
 /**
- * @author d4peng
+ * <p> DruidStatViewServletConfiguration:statView配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 18:41
- * @description DruidStatViewServletConfiguration:statView配置
+ * @since 2022-03-27
  */
 @ConditionalOnWebApplication
 public class DruidStatViewServletConfiguration {

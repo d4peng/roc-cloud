@@ -15,10 +15,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author d4peng
+ * <p> MybatisConfig:Mybatis配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 16:24
- * @description MybatisConfig:Mybatis配置
+ * @since 2022-03-27
  */
 @Configuration
 public class MybatisConfig {

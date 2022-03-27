@@ -65,10 +65,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @author d4peng
+ * <p> MybatisPlusAutoConfiguration: MybatisPlus自动配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 12:03
- * @description MybatisPlusAutoConfiguration: MybatisPlus自动配置
+ * @since 2022-03-27
  */
 @Configuration
 @ConditionalOnClass({SqlSessionFactory.class, SqlSessionFactoryBean.class})

@@ -11,10 +11,10 @@
 //import java.util.Map;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-24 18:15
-// * @description OrikaFactory:Orika工具工厂类
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> OrikaFactory:Orika工具工厂类
 // */
 //public class OrikaFactory {
 //    private static final Logger LOGGER = LoggerFactory.getLogger(OrikaFactory.class);

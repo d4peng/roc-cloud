@@ -2,6 +2,7 @@ package icu.d4peng.cloud.common.message.service.impl;
 
 import icu.d4peng.cloud.common.message.properties.EmailProperties;
 import icu.d4peng.cloud.common.message.service.EmailService;
+import lombok.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,10 +15,11 @@ import javax.mail.internet.MimeMessage;
 import java.util.Map;
 
 /**
- * @author d4peng
+ * <p> EmailServiceImpl:邮件服务实现
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 15:43
- * @description EmailServiceImpl:邮件服务实现
+ * @since 2022-03-27
  */
 public class EmailServiceImpl implements EmailService {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);
@@ -25,9 +27,7 @@ public class EmailServiceImpl implements EmailService {
     private final TemplateEngine templateEngine;
     private final JavaMailSender javaMailSender;
     private final EmailProperties emailProperties;
-    // 信息
     private final MimeMessage mimeMessage;
-    // 信息助手
     private final MimeMessageHelper mimeMessageHelper;
 
     public EmailServiceImpl(EmailProperties emailProperties, JavaMailSender javaMailSender, TemplateEngine templateEngine) {
@@ -44,6 +44,7 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
+    @Override
     public void sendTextEmail(String to, String subject, String context) {
         try {
             this.mimeMessageHelper.setTo(to);
@@ -58,6 +59,7 @@ public class EmailServiceImpl implements EmailService {
         this.javaMailSender.send(this.mimeMessage);
     }
 
+    @Override
     public void sendHtmlEmail(String to, String subject, String templateName, Map<String, Object> context) {
         try {
             this.mimeMessageHelper.setTo(to);

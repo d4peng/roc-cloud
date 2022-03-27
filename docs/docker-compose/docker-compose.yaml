@@ -1,0 +1,62 @@
+version: "3.1"
+services:
+  mysql:
+    image: "mysql:8.0.21"
+    container_name: "mysql"
+    restart: "always"
+    privileged: true
+    ports:
+      - "3306:3306"
+    env_file:
+      - "./mysql/mysql.env"
+    volumes:
+      - "./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql"
+  nacos:
+    image: "nacos/nacos-server:2.0.3"
+    container_name: "nacos"
+    restart: "always"
+    privileged: true
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
+    env_file:
+      - "./nacos/nacos.env"
+    depends_on:
+      - mysql
+  seata:
+    image: "seataio/seata-server:1.4.2"
+    container_name: "seata"
+    restart: "always"
+    privileged: true
+    ports:
+      - "8091:8091"
+    env_file:
+      - "./seata/seata.env"
+    volumes:
+      - "./seata/registry.conf:/root/seata-config/registry.conf"
+    depends_on:
+      - nacos
+  postgres:
+    image: "postgres:13.6"
+    container_name: "postgres"
+    restart: "always"
+    privileged: true
+    ports:
+      - "5432:5432"
+    env_file:
+      - "./postgres/postgres.env"
+  redis:
+    image: "redis:6.2.6"
+    container_name: "redis"
+    restart: "always"
+    privileged: true
+    ports:
+      - "6379:6379"
+    env_file:
+      - "./redis/redis.env"
+    volumes:
+      - "./redis/redis.conf:/etc/redis.conf"
+    command:
+      - "redis-server"
+      - "/etc/redis.conf"

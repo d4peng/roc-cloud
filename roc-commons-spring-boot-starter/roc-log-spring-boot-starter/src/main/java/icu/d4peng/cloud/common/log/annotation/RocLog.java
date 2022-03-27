@@ -3,10 +3,11 @@ package icu.d4peng.cloud.common.log.annotation;
 import java.lang.annotation.*;
 
 /**
- * @author d4peng
+ * <p> RocLog:日志记录注解
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 10:39
- * @description RocLog:日志记录注解
+ * @since 2022-03-27
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

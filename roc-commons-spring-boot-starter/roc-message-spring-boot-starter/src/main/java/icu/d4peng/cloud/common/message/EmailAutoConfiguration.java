@@ -22,10 +22,11 @@ import org.thymeleaf.templateresolver.FileTemplateResolver;
 import java.util.Properties;
 
 /**
- * @author d4peng
+ * <p> EmailAutoConfiguration:邮件自动配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 15:39
- * @description EmailAutoConfiguration:邮件自动配置
+ * @since 2022-03-27
  */
 @Configuration
 @EnableConfigurationProperties({EmailProperties.class})

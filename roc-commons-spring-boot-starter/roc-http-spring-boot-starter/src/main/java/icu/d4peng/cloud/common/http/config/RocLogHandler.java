@@ -6,10 +6,11 @@ import com.dtflys.forest.logging.RequestLogMessage;
 import com.dtflys.forest.logging.ResponseLogMessage;
 
 /**
- * @author d4peng
+ * <p> RocLogHandler:自定义handler
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-14 21:35
- * @description RocLogHandler:自定义handler
+ * @since 2022-03-27
  */
 public class RocLogHandler implements ForestLogHandler {
     private final ForestLogger LOGGER = new ForestLogger();

@@ -8,10 +8,11 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author d4peng
+ * <p> SaTokenProperties: sa-token配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 09:16
- * @description SaTokenProperties: sa-token配置
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)

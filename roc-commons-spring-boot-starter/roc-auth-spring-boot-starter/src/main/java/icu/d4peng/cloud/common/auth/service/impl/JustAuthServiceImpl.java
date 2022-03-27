@@ -16,10 +16,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author d4peng
+ * <p> JustAuthServiceImpl:Auth服务实现
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-24 18:34
- * @description JustAuthServiceImpl:Auth服务实现
+ * @since 2022-03-27
  */
 public class JustAuthServiceImpl implements JustAuthService {
     private static final Logger LOGGER = LoggerFactory.getLogger(JustAuthServiceImpl.class);

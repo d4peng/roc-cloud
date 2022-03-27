@@ -4,10 +4,11 @@ import com.dtflys.forest.annotation.Request;
 import com.dtflys.forest.http.ForestResponse;
 
 /**
- * @author d4peng
+ * <p> TestService:测试接口
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-27 11:08
- * @description TestService:测试接口
+ * @since 2022-03-27
  */
 public interface TestService {
 

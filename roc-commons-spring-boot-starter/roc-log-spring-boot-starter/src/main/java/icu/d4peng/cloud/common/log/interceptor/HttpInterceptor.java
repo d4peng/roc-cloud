@@ -11,10 +11,10 @@ package icu.d4peng.cloud.common.log.interceptor;//package icu.d4peng.cloud.commo
 //import org.slf4j.LoggerFactory;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2022-03-20 20:16
-// * @description HttpInterceptor:Http拦截器添加请求
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> HttpInterceptor:Http拦截器添加请求
 // */
 //public class HttpInterceptor implements Interceptor<Object> {
 //    private final Logger LOGGER = LoggerFactory.getLogger(HttpInterceptor.class);

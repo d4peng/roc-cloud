@@ -3,10 +3,11 @@ package icu.d4peng.cloud.common.auth.exception;
 import icu.d4peng.cloud.common.core.exception.BaseException;
 
 /**
- * @author d4peng
+ * <p> SaTokenException: SaToken异常
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 09:47
- * @description SaTokenException: SaToken异常
+ * @since 2022-03-27
  */
 public class SaTokenException extends BaseException {
 

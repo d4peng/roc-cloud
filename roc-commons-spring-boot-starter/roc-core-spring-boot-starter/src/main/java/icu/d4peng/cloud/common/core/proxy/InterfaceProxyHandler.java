@@ -6,10 +6,10 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 /**
- * @author d4peng
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-27 10:05
- * @description InterfaceProxyHandler:interface代理实现类
+ * <p> InterfaceProxyHandler:interface代理实现类
+ * @since 2022-03-27 15:43
  */
 public class InterfaceProxyHandler<T> implements InvocationHandler {
     private final Class<T> interfaceClass;

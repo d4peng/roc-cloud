@@ -9,10 +9,11 @@ import lombok.experimental.Accessors;
 import java.time.LocalDateTime;
 
 /**
- * @author d4peng
+ * <p> SuperRequest:父类请求(用于构造列表)
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-01-01 11:15
- * @description SuperRequest:父类请求(用于构造列表)
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)

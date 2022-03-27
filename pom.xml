@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,7 +15,7 @@
     <!-- 项目基础信息 -->
     <name>roc-cloud</name>
     <description>roc cloud base</description>
-    <url>https://github.com/d4peng/roc</url>
+    <url>https://github.com/d4peng/roc-cloud</url>
 
     <!-- 开发者信息 -->
     <developers>
@@ -38,8 +38,8 @@
 
     <!-- 托管仓库信息，根据自己的应用情况修改 -->
     <scm>
-        <url>https://github.com/d4peng/roc</url>
-        <connection>scm:git:https://github.com/d4peng/roc.git</connection>
+        <url>https://github.com/d4peng/roc-cloud</url>
+        <connection>scm:git:https://github.com/d4peng/roc-cloud.git</connection>
         <developerConnection>https://www.d4peng.icu</developerConnection>
         <tag>1.0.0</tag>
     </scm>
@@ -87,6 +87,7 @@
         <maven.source.version>2.2.1</maven.source.version>
         <maven.doc.version>2.9.1</maven.doc.version>
         <maven.staging.version>1.6.7</maven.staging.version>
+        <maven.surefire.version>2.22.2</maven.surefire.version>
         <maven.gpg.version>1.5</maven.gpg.version>
     </properties>
 
@@ -266,9 +267,55 @@
             </dependency>
 
 
+
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-commons-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>icu.d4peng.cloud</groupId>
                 <artifactId>roc-core-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-auth-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-cache-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-captcha-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-db-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-http-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-log-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-message-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>icu.d4peng.cloud</groupId>
+                <artifactId>roc-mvc-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
@@ -277,14 +324,87 @@
     </dependencyManagement>
 
     <build>
+        <plugins>
+            <plugin>
+                <!-- 跳过test -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+
+            <!-- 部署和发布插件 -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>release</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <!-- maven源代码插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- javadoc插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- GPG签名插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+
         <!-- 插件管理 -->
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-parent</artifactId>
-                    <version>${spring.boot.version}</version>
+                    <!-- 跳过test -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.version}</version>
+                    <configuration>
+                        <skipTests>true</skipTests>
+                    </configuration>
                 </plugin>
+
                 <!-- 部署和发布插件 -->
                 <plugin>
                     <groupId>org.sonatype.plugins</groupId>
@@ -298,6 +418,7 @@
                     </configuration>
                 </plugin>
 
+                <!-- maven源代码插件 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
@@ -312,6 +433,7 @@
                     </executions>
                 </plugin>
 
+                <!-- javadoc插件 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>

@@ -4,10 +4,10 @@
 //import java.lang.reflect.Field;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-24 18:10
-// * @description AnnotationUtils:注解工具类
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> AnnotationUtils:注解工具类
 // */
 //public class AnnotationUtils {
 //    /**

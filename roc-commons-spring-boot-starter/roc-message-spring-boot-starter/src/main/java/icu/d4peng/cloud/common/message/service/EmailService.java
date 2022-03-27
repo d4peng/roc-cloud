@@ -3,10 +3,11 @@ package icu.d4peng.cloud.common.message.service;
 import java.util.Map;
 
 /**
- * @author d4peng
+ * <p> EmailService:邮件服务实现
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 15:43
- * @description EmailService:邮件服务实现
+ * @since 2022-03-27
  */
 public interface EmailService {
     /**

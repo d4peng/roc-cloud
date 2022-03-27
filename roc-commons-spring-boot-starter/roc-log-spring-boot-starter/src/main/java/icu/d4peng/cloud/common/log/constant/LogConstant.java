@@ -1,10 +1,11 @@
 package icu.d4peng.cloud.common.log.constant;
 
 /**
- * @author d4peng
+ * <p> LogConstant:日志常量
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 14:33
- * @description LogConstant:日志常量
+ * @since 2022-03-27
  */
 public class LogConstant {
     public static final String TRACE_ID = "traceID";

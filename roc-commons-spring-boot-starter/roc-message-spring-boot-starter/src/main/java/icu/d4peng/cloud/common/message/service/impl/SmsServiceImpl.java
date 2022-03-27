@@ -19,10 +19,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
 /**
- * @author d4peng
+ * <p> SmsServiceImpl:短信服务实现
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-19 15:43
- * @description SmsServiceImpl:短信服务实现
+ * @since 2022-03-27
  */
 public class SmsServiceImpl implements SmsService {
     private static final Logger LOGGER = LoggerFactory.getLogger(SmsServiceImpl.class);
@@ -41,7 +42,7 @@ public class SmsServiceImpl implements SmsService {
             throw new RuntimeException(e.getCause());
         }
     }
-
+    @Override
     public void sendSms(Collection<String> phoneNumbers, JSONObject templateParam) {
         String targetPhoneNumbers = String.join(",", phoneNumbers);
         SendSmsRequest sendSmsRequest = new SendSmsRequest()
@@ -62,7 +63,7 @@ public class SmsServiceImpl implements SmsService {
             throw new RuntimeException(msg);
         }
     }
-
+    @Override
     public JSONObject querySms(String phoneNumber, LocalDateTime sendDate) {
         if (sendDate == null) {
             sendDate = LocalDateTime.now();

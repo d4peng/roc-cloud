@@ -7,10 +7,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author d4peng
+ * <p> LocalDateTimeConverter:GET请求中时间转换
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-20 10:40
- * @description LocalDateTimeConverter:GET请求中时间转换
+ * @since 2022-03-27
  */
 public class LocalDateTimeConverter implements Converter<String, LocalDateTime> {
     private final DateTimeFormatter YYYY_MM = DateTimeFormatter.ofPattern("yyyy-MM");

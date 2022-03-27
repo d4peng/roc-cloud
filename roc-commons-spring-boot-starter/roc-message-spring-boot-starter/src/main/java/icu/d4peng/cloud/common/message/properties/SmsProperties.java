@@ -5,10 +5,11 @@ import lombok.experimental.Accessors;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author d4peng
+ * <p> SmsProperties:阿里云短信配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-19 15:16
- * @description SmsProperties:阿里云短信配置
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)

@@ -11,10 +11,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author d4peng
+ * <p> LogAutoConfiguration:日志自动配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 10:38
- * @description LogAutoConfiguration:日志自动配置
+ * @since 2022-03-27
  */
 @Configuration
 @EnableConfigurationProperties(LogProperties.class)

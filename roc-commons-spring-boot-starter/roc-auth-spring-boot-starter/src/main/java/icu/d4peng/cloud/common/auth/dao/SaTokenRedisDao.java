@@ -14,10 +14,11 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author d4peng
+ * <p> SaTokenRedisDao: 缓存Dao
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-30 10:38
- * @description SaTokenRedisDao: 缓存Dao
+ * @since 2022-03-27
  */
 public class SaTokenRedisDao implements SaTokenDao {
     private static final Logger LOGGER = LoggerFactory.getLogger(SaTokenRedisDao.class);

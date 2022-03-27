@@ -3,10 +3,10 @@
 //import java.util.concurrent.*;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-24 10:15
-// * @description ExecutorFactory:线程池工具类
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> ExecutorFactory:线程池工具类
 // */
 //// TODO 有点问题
 //public class ExecutorFactory {

@@ -3,10 +3,11 @@ package icu.d4peng.cloud.common.cache.service;
 import net.oschina.j2cache.CacheChannel;
 
 /**
- * @author d4peng
+ * <p> CacheService:缓存服务
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 16:47
- * @description CacheService:缓存服务
+ * @since 2022-03-27
  */
 public interface CacheService {
     /**

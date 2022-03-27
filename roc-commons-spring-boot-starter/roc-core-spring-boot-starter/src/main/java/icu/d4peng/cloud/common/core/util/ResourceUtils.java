@@ -4,10 +4,10 @@
 //import org.springframework.core.io.Resource;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-24 18:19
-// * @description ResourceUtils:资源工具类
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> ResourceUtils:资源工具类
 // */
 //public class ResourceUtils {
 //    /**

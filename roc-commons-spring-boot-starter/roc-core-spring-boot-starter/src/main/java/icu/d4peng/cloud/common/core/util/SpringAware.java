@@ -9,22 +9,23 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.env.Environment;
 
 /**
- * @author d4peng
+ * <p> SpringAware:Spring操作
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-24 10:12
- * @description SpringAware:Spring操作
+ * @since 2022-03-27
  */
 public class SpringAware implements ApplicationContextAware {
     private static final Logger LOGGER = LoggerFactory.getLogger(SpringAware.class);
     private static ApplicationContext applicationContext;
 
+    public static ApplicationContext getApplicationContext() {
+        return SpringAware.applicationContext;
+    }
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         SpringAware.applicationContext = applicationContext;
-    }
-
-    public static ApplicationContext getApplicationContext() {
-        return SpringAware.applicationContext;
     }
 
     public static <T> T getBean(Class<T> clz) {

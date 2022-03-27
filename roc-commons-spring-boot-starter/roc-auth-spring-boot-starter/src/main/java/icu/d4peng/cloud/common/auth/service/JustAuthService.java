@@ -5,10 +5,11 @@ import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthUser;
 
 /**
- * @author d4peng
+ * <p> JustAuthService: 认证服务
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-24 19:06
- * @description JustAuthService: 认证服务
+ * @since 2022-03-27
  */
 public interface JustAuthService {
 

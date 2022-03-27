@@ -10,10 +10,11 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author d4peng
+ * <p> DruidProperties:Druid配置 TODO:可以自定义端点
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 18:36
- * @description DruidProperties:Druid配置 TODO:可以自定义端点
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)
@@ -31,6 +32,7 @@ public class DruidProperties extends DruidDataSource implements InitializingBean
     @Autowired(required = false)
     private DataSourceProperties basicProperties;
 
+    @Override
     public void afterPropertiesSet() throws Exception {
         if (super.getUsername() == null) {
             super.setUsername(this.basicProperties.determineUsername());

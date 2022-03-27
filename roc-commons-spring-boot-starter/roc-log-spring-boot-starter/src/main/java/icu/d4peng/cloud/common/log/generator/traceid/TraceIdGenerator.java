@@ -1,10 +1,11 @@
 package icu.d4peng.cloud.common.log.generator.traceid;
 
 /**
- * @author d4peng
+ * <p> TraceIdGenerator:TraceId生成器
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 14:03
- * @description TraceIdGenerator:TraceId生成器
+ * @since 2022-03-27
  */
 public interface TraceIdGenerator {
     /**

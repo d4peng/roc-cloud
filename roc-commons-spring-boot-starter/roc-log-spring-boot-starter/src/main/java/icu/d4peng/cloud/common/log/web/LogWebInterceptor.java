@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author d4peng
+ * <p> LogWebInterceptor:web拦截器
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-23 20:14
- * @description LogWebInterceptor:web拦截器
+ * @since 2022-03-27
  */
 public class LogWebInterceptor implements HandlerInterceptor {
     @Override

@@ -8,12 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author d4peng
+ * <p> SpringMvcUtil:Spring操作工具类
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 09:43
- * @description SpringMVCUtil:Spring操作工具类
+ * @since 2022-03-27
  */
-public class SpringMVCUtil {
+public class SpringMvcUtil {
 
     public static HttpServletRequest getRequest() {
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

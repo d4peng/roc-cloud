@@ -4,8 +4,15 @@ import lombok.Data;
 
 import java.security.KeyStore;
 
+/**
+ * <p> HttpSSLKeyStoreProperties:Http密钥链接
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+ * @version 1.0.0
+ * @since 2022-03-27
+ */
 @Data
-public class HttpSSLKeyStoreProperties {
+public class HttpSslKeyStoreProperties {
     protected String id;
     protected String type = "jks";
     protected String file;

@@ -1,15 +1,15 @@
 package icu.d4peng.cloud.common.log.context;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author d4peng
+ * <p> LogContext:日志上下文记录
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 14:09
- * @description LogContext:日志上下文记录
+ * @since 2022-03-27
  */
 public class LogContext {
     private static final Logger LOGGER = LoggerFactory.getLogger(LogContext.class);
@@ -87,27 +87,27 @@ public class LogContext {
         PRE_HOST.remove();
     }
 
-    public static String getPreIP() {
+    public static String getPreIp() {
         return PRE_IP.get();
     }
 
-    public static void putPreIP(String preIP) {
-        PRE_IP.set(preIP);
+    public static void putPreIp(String preIp) {
+        PRE_IP.set(preIp);
     }
 
-    public static void removePreIP() {
+    public static void removePreIp() {
         PRE_IP.remove();
     }
 
-    public static String getCurrentIP() {
+    public static String getCurrentIp() {
         return CURRENT_IP.get();
     }
 
-    public static void putCurrentIP(String currentIP) {
-        CURRENT_IP.set(currentIP);
+    public static void putCurrentIp(String currentIp) {
+        CURRENT_IP.set(currentIp);
     }
 
-    public static void removeCurrentIP() {
+    public static void removeCurrentIp() {
         CURRENT_IP.remove();
     }
 

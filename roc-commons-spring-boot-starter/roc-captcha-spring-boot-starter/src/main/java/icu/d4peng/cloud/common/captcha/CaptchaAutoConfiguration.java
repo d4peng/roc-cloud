@@ -13,10 +13,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author d4peng
+ * <p> CaptchaAutoConfiguration: 验证码自动配置类
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 10:15
- * @description CaptchaAutoConfiguration: 验证码自动配置类
+ * @since 2022-03-27
  */
 @Configuration
 @EnableConfigurationProperties({CaptchaProperties.class})

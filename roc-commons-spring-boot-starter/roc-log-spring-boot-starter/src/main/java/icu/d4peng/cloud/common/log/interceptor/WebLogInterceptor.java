@@ -12,10 +12,10 @@ package icu.d4peng.cloud.common.log.interceptor;//package icu.d4peng.cloud.commo
 //import javax.servlet.http.HttpServletResponse;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-27 14:49
-// * @description WebLogInterceptor: WEB日志拦截
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// * @author d4peng [d4peng@qq.com]
+//
+// * <p> WebLogInterceptor: WEB日志拦截
 // */
 //public class WebLogInterceptor implements HandlerInterceptor {
 //    private static final Logger LOGGER = LoggerFactory.getLogger(WebLogInterceptor.class);

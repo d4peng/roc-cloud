@@ -10,10 +10,10 @@ package icu.d4peng.cloud.common.log.interceptor;//package icu.d4peng.cloud.commo
 //import reactor.core.publisher.Mono;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2022-03-20 20:29
-// * @description GlobalLogFilter:全局过滤器
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> GlobalLogFilter:全局过滤器
 // */
 //public class GlobalLogFilter implements GlobalFilter, Ordered {
 //    @Value("${spring.application.name}")

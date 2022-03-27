@@ -12,10 +12,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author d4peng
+ * <p> LogHttpInterceptor:Http时引用
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-23 20:41
- * @description LogHttpInterceptor:Http时引用
+ * @since 2022-03-27
  */
 public class LogHttpInterceptor implements Interceptor<Object> {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
@@ -30,7 +31,7 @@ public class LogHttpInterceptor implements Interceptor<Object> {
             request.addHeader(LogConstant.SPAN_ID, LogGenerator.generatorSpanId(LogContext.getSpanId()));
             request.addHeader(LogConstant.PRE_APP_NAME, appName);
             request.addHeader(LogConstant.PRE_HOST, NetUtils.getLocalHostName());
-            request.addHeader(LogConstant.PRE_IP, NetUtils.getLocalIP());
+            request.addHeader(LogConstant.PRE_IP, NetUtils.getLocalIp());
         } else {
             log.debug("[TLOG]本地threadLocal变量没有正确传递traceId,本次调用不传递traceId");
         }

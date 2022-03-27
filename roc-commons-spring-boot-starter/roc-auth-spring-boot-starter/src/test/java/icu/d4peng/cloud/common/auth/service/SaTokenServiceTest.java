@@ -8,10 +8,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
- * @author d4peng
+ * <p> SaTokenServiceTest:
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-26 17:32
- * @description SaTokenServiceTest:
+ * @since 2022-03-27
  */
 @SpringBootTest(classes = SaTokenApplication.class)
 @ActiveProfiles("sa-token")

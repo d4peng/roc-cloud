@@ -14,10 +14,11 @@ import org.springframework.test.context.ActiveProfiles;
 import java.sql.SQLException;
 
 /**
- * @author d4peng
+ * <p> DruidTests:测试
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-26 20:49
- * @description DruidTests:测试
+ * @since 2022-03-27
  */
 @SpringBootTest(classes = {DruidApplication.class})
 @ActiveProfiles({"druid"})

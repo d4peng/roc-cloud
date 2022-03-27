@@ -4,10 +4,11 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
 /**
- * @author d4peng
+ * <p> SaPathMatcherHolder:路径匹配Holder
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 09:45
- * @description SaPathMatcherHolder:路径匹配Holder
+ * @since 2022-03-27
  */
 public class SaPathMatcherHolder {
     public static PathMatcher pathMatcher;

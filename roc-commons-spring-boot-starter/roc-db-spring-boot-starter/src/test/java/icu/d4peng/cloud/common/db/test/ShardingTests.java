@@ -13,10 +13,10 @@
 //import org.springframework.test.context.ActiveProfiles;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2022-02-28 21:53
-// * @description ShardingTests:分库分表测试
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> ShardingTests:分库分表测试
 // */
 //@SpringBootTest(classes = {MybatisPlusApplication.class})
 //@ActiveProfiles({"mybatis-shard"})

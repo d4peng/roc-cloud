@@ -7,10 +7,11 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * @author d4peng
+ * <p> LogMsg:Log信息存储
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-21 21:11
- * @description LogMsg:Log信息存储
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)

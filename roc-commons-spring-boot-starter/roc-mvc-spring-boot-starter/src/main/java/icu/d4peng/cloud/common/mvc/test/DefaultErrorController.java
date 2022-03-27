@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * @author d4peng
+ * <p> DefaultErrorController:默认的错误处理机制
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-30 11:25
- * @description DefaultErrorController:默认的错误处理机制
+ * @since 2022-03-27
  */
 @RestController
 public class DefaultErrorController extends AbstractErrorController {

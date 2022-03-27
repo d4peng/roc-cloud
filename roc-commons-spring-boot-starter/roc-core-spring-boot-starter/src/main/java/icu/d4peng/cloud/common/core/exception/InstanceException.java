@@ -1,10 +1,11 @@
 package icu.d4peng.cloud.common.core.exception;
 
 /**
- * @author d4peng
+ * <p> InstanceException:实例化异常
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-27 13:15
- * @description InstanceException:
+ * @since 2022-03-27
  */
 public class InstanceException extends BaseException {
     public InstanceException() {

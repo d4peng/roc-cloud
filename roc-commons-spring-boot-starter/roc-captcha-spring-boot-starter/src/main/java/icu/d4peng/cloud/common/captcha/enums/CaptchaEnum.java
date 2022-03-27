@@ -1,10 +1,11 @@
 package icu.d4peng.cloud.common.captcha.enums;
 
 /**
- * @author d4peng
+ * <p> CaptchaEnum:验证码类型
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 10:17
- * @description CaptchaEnum:验证码类型
+ * @since 2022-03-27
  */
 public enum CaptchaEnum {
     /**

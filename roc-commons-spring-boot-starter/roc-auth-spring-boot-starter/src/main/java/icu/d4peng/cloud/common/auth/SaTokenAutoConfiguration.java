@@ -1,11 +1,8 @@
 package icu.d4peng.cloud.common.auth;
 
 import cn.dev33.satoken.SaManager;
-import cn.dev33.satoken.action.SaTokenAction;
 import cn.dev33.satoken.basic.SaBasicTemplate;
 import cn.dev33.satoken.basic.SaBasicUtil;
-import cn.dev33.satoken.config.SaTokenConfig;
-import cn.dev33.satoken.context.SaTokenContext;
 import cn.dev33.satoken.context.second.SaTokenSecondContextCreator;
 import cn.dev33.satoken.dao.SaTokenDao;
 import cn.dev33.satoken.id.SaIdTemplate;
@@ -30,10 +27,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.util.PathMatcher;
 
 /**
- * @author d4peng
+ * <p> SaTokenAutoconfiguration: sa自动配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 09:34
- * @description SaTokenAutoconfiguration: sa自动配置
+ * @since 2022-03-27
  */
 @Configuration
 @EnableConfigurationProperties({SaTokenProperties.class})

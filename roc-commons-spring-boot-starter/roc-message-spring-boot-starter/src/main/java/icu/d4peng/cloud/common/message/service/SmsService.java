@@ -6,10 +6,11 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
- * @author d4peng
+ * <p> SmsService:短信服务
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-19 15:58
- * @description SmsService:短信服务
+ * @since 2022-03-27
  */
 public interface SmsService {
     /**

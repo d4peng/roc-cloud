@@ -11,12 +11,11 @@ import com.dtflys.forest.scanner.ClassPathClientScanner;
 import com.dtflys.forest.schema.ForestConfigurationBeanDefinitionParser;
 import com.dtflys.forest.spring.ForestBeanProcessor;
 import com.dtflys.forest.utils.ForestDataType;
-import com.dtflys.forest.utils.StringUtils;
 import icu.d4peng.cloud.common.core.exception.InstanceException;
 import icu.d4peng.cloud.common.http.properties.HttpConvertProperties;
 import icu.d4peng.cloud.common.http.properties.HttpConverterItemProperties;
 import icu.d4peng.cloud.common.http.properties.HttpProperties;
-import icu.d4peng.cloud.common.http.properties.HttpSSLKeyStoreProperties;
+import icu.d4peng.cloud.common.http.properties.HttpSslKeyStoreProperties;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -38,7 +37,13 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * <p> HttpAutoConfiguration:Http自动配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+ * @version 1.0.0
+ * @since 2022-03-27
+ */
 @Configuration
 @EnableConfigurationProperties({HttpProperties.class})
 @ConditionalOnProperty(prefix = HttpProperties.PREFIX, name = {"enabled"}, havingValue = "true")
@@ -65,7 +70,9 @@ public class HttpAutoConfiguration {
      */
     @Bean
     @ConditionalOnMissingBean
-    public ClassPathClientScanner classPathClientScanner(ConfigurableApplicationContext configurableApplicationContext, HttpProperties httpProperties) {
+    @SuppressWarnings("AlibabaMethodTooLong")
+    public ClassPathClientScanner classPathClientScanner(ConfigurableApplicationContext configurableApplicationContext,
+                                                         HttpProperties httpProperties) {
         // 注册ForestConfigurationBean
         BeanDefinitionBuilder forestConfigurationBuilder = BeanDefinitionBuilder.genericBeanDefinition(ForestConfiguration.class);
 
@@ -118,7 +125,7 @@ public class HttpAutoConfiguration {
         BeanDefinition interceptorFactoryBeanDefinition = registerInterceptorFactoryBean(configurableApplicationContext);
         forestConfigurationBuilder.addPropertyValue("interceptorFactory", interceptorFactoryBeanDefinition);
 
-        ManagedMap<String, BeanDefinition> sslKeystoreMap = generateSSLKeyStoreMapBean(httpProperties.getSslKeyStores());
+        ManagedMap<String, BeanDefinition> sslKeystoreMap = generateSslKeyStoreMapBean(httpProperties.getSslKeyStores());
         forestConfigurationBuilder.addPropertyValue("sslKeyStores", sslKeystoreMap);
 
         // 注册Bean
@@ -178,22 +185,22 @@ public class HttpAutoConfiguration {
         return beanDefinition;
     }
 
-    private ManagedMap<String, BeanDefinition> generateSSLKeyStoreMapBean(List<HttpSSLKeyStoreProperties> httpSSLKeyStorePropertiesList) {
+    private ManagedMap<String, BeanDefinition> generateSslKeyStoreMapBean(List<HttpSslKeyStoreProperties> httpSslKeyStorePropertiesList) {
         ManagedMap<String, BeanDefinition> sslKeystoreMap = new ManagedMap<>();
-        for (HttpSSLKeyStoreProperties httpSSLKeyStoreProperties : httpSSLKeyStorePropertiesList) {
+        for (HttpSslKeyStoreProperties httpSslKeyStoreProperties : httpSslKeyStorePropertiesList) {
             BeanDefinition beanDefinition = ForestConfigurationBeanDefinitionParser.createSSLKeyStoreBean(
-                    httpSSLKeyStoreProperties.getId(),
-                    httpSSLKeyStoreProperties.getType(),
-                    httpSSLKeyStoreProperties.getFile(),
-                    httpSSLKeyStoreProperties.getKeystorePass(),
-                    httpSSLKeyStoreProperties.getCertPass(),
-                    httpSSLKeyStoreProperties.getProtocols(),
-                    httpSSLKeyStoreProperties.getCipherSuites(),
-                    httpSSLKeyStoreProperties.getHostnameVerifier(),
-                    httpSSLKeyStoreProperties.getSslSocketFactoryBuilder()
+                    httpSslKeyStoreProperties.getId(),
+                    httpSslKeyStoreProperties.getType(),
+                    httpSslKeyStoreProperties.getFile(),
+                    httpSslKeyStoreProperties.getKeystorePass(),
+                    httpSslKeyStoreProperties.getCertPass(),
+                    httpSslKeyStoreProperties.getProtocols(),
+                    httpSslKeyStoreProperties.getCipherSuites(),
+                    httpSslKeyStoreProperties.getHostnameVerifier(),
+                    httpSslKeyStoreProperties.getSslSocketFactoryBuilder()
             );
             beanDefinition.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
-            sslKeystoreMap.put(httpSSLKeyStoreProperties.getId(), beanDefinition);
+            sslKeystoreMap.put(httpSslKeyStoreProperties.getId(), beanDefinition);
         }
         return sslKeystoreMap;
     }

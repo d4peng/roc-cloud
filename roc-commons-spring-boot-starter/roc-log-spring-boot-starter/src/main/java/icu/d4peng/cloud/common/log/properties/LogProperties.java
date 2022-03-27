@@ -9,10 +9,11 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author d4peng
+ * <p> LogProperties:日志配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 13:47
- * @description LogProperties:日志配置
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)

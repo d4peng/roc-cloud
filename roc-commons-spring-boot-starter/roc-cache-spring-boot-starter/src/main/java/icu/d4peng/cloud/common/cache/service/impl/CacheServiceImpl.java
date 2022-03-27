@@ -7,10 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
 /**
- * @author d4peng
+ * <p> CacheServiceImpl:缓存服务实现
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 16:46
- * @description CacheServiceImpl:缓存服务实现
+ * @since 2022-03-27
  */
 public class CacheServiceImpl implements CacheService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CacheServiceImpl.class);
@@ -24,10 +25,13 @@ public class CacheServiceImpl implements CacheService {
         Assert.notNull(cacheChannel, "cache channel can't be null");
     }
 
+
+@Override
     public CacheChannel getCacheChannel() {
         return this.cacheChannel;
     }
 
+    @Override
     public void close() {
         this.cacheChannel.close();
     }

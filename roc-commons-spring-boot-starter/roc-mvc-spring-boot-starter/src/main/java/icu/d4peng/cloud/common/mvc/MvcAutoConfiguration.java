@@ -3,8 +3,8 @@ package icu.d4peng.cloud.common.mvc;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import icu.d4peng.cloud.common.mvc.config.LocalDateTimeConverter;
-import icu.d4peng.cloud.common.mvc.test.DefaultErrorController;
 import icu.d4peng.cloud.common.mvc.properties.MvcProperties;
+import icu.d4peng.cloud.common.mvc.test.DefaultErrorController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
@@ -22,10 +22,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @author d4peng
+ * <p> MvcAutoConfiguration:默认MVC处理机制
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-30 11:26
- * @description MvcAutoConfiguration:默认MVC处理机制
+ * @since 2022-03-27
  */
 @Configuration
 @ConditionalOnProperty(prefix = MvcProperties.PREFIX, name = {"enabled"}, havingValue = "true")

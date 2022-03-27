@@ -17,10 +17,11 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * @author d4peng
+ * <p> LogGatewayInterceptor:网关拦截器
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-23 20:24
- * @description LogGatewayInterceptor:
+ * @since 2022-03-27
  */
 public class LogGatewayInterceptor implements GlobalFilter, Ordered {
     private static final Integer FIRST = 0;

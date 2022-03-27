@@ -5,10 +5,11 @@ import lombok.experimental.Accessors;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author d4peng
+ * <p> MvcProperties:Mvc属性配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-30 11:25
- * @description MvcProperties:
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)

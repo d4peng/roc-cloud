@@ -12,10 +12,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author d4peng
+ * <p> SmsAutoConfiguration:短信自动配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 15:39
- * @description SmsAutoConfiguration:短信自动配置
+ * @since 2022-03-27
  */
 @Configuration
 @EnableConfigurationProperties({SmsProperties.class})

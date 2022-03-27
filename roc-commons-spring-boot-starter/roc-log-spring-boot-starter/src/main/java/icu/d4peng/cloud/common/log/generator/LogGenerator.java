@@ -6,10 +6,11 @@ import icu.d4peng.cloud.common.log.generator.traceid.DefaultTraceIdGenerator;
 import icu.d4peng.cloud.common.log.generator.traceid.TraceIdGenerator;
 
 /**
- * @author d4peng
+ * <p> LogGenerator:Log标签生成
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-21 21:11
- * @description LogGenerator:Log标签生成
+ * @since 2022-03-27
  */
 public class LogGenerator {
     /**
@@ -51,12 +52,12 @@ public class LogGenerator {
         return LogGenerator.spanIdGenerator.generateNextSpanId(spanId);
     }
 
-    public static void setSpanIdGenerator(SpanIdGenerator spanIdGenerator) {
-        LogGenerator.spanIdGenerator = spanIdGenerator;
-    }
-
     public static SpanIdGenerator getSpanIdGenerator() {
         return LogGenerator.spanIdGenerator;
+    }
+
+    public static void setSpanIdGenerator(SpanIdGenerator spanIdGenerator) {
+        LogGenerator.spanIdGenerator = spanIdGenerator;
     }
 
 }

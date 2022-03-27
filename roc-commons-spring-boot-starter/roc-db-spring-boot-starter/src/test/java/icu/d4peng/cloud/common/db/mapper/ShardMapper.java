@@ -5,10 +5,10 @@
 //import org.apache.ibatis.annotations.Mapper;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2022-01-24 21:45
-// * @description ShardMapper:
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> ShardMapper:
 // */
 //@Mapper
 //public interface ShardMapper extends BaseMapper<Shard> {

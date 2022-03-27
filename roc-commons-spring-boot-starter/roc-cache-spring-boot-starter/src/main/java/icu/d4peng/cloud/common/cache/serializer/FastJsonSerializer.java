@@ -5,12 +5,13 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import net.oschina.j2cache.util.Serializer;
 
 /**
- * @author d4peng
+ * <p> FastJSONSerializer:FastJSON序列化
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-20 14:55
- * @description FastJSONSerializer:FastJSON序列化
+ * @since 2022-03-27
  */
-public class FastJSONSerializer implements Serializer {
+public class FastJsonSerializer implements Serializer {
 
     @Override
     public String name() {

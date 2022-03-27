@@ -5,12 +5,14 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @author d4peng
+ * <p> WebLogMvcConfigurer:WebLogMvc配置器
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 14:51
- * @description WebLogMvcConfigurer:WebLogMvc配置器
+ * @since 2022-03-27
  */
 public class WebLogMvcConfigurer implements WebMvcConfigurer {
+    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LogWebInterceptor());
     }

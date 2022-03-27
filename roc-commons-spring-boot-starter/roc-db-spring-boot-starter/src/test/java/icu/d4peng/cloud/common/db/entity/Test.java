@@ -1,15 +1,16 @@
 package icu.d4peng.cloud.common.db.entity;
 
 import com.alibaba.fastjson.JSON;
-import icu.d4peng.cloud.common.db.domain.SuperEntity;
+import icu.d4peng.cloud.common.db.domain.AbstractSuperEntity;
 
 /**
- * @author d4peng
+ * <p> Test:测试
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-01-24 21:44
- * @description Test:
+ * @since 2022-03-27
  */
-public class Test extends SuperEntity {
+public class Test extends AbstractSuperEntity {
     private String test;
 
     public String getTest() {

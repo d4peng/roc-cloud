@@ -3,10 +3,10 @@
 //import java.util.regex.Pattern;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-24 18:21
-// * @description RegexUtils:正则工具类
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> RegexUtils:正则工具类
 // */
 //public class RegexUtils {
 //    /**

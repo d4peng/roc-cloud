@@ -13,10 +13,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author d4peng
+ * <p> CacheAutoConfiguration:缓存自动配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 16:48
- * @description CacheAutoConfiguration:缓存自动配置
+ * @since 2022-03-27
  */
 @Configuration
 @EnableConfigurationProperties({CacheProperties.class})

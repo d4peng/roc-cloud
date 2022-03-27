@@ -13,11 +13,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * @author d4peng
+ * <p> SpringBootVFS:虚拟文件扫描
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 17:21
- * @description SpringBootVFS:虚拟文件扫描
+ * @since 2022-03-27
  */
+@SuppressWarnings("AlibabaClassNamingShouldBeCamel")
 public class SpringBootVFS extends VFS {
     private final ResourcePatternResolver resourceResolver;
 

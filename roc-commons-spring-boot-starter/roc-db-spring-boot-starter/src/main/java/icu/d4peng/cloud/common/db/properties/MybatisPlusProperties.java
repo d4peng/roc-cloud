@@ -19,10 +19,11 @@ import java.util.Properties;
 import java.util.stream.Stream;
 
 /**
- * @author d4peng
+ * <p> MybatisPlusProperties:MybatisPlus属性配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 15:23
- * @description MybatisPlusProperties:MybatisPlus属性配置
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)
@@ -35,7 +36,7 @@ public class MybatisPlusProperties implements InitializingBean {
     /**
      * 资源解决器
      */
-    private static final ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
+    private static final ResourcePatternResolver RESOURCE_RESOLVER = new PathMatchingResourcePatternResolver();
     /**
      * 是否开启:默认开启
      */
@@ -94,7 +95,7 @@ public class MybatisPlusProperties implements InitializingBean {
 
     private Resource[] getResources(String location) {
         try {
-            return resourceResolver.getResources(location);
+            return RESOURCE_RESOLVER.getResources(location);
         } catch (IOException e) {
             return new Resource[0];
         }

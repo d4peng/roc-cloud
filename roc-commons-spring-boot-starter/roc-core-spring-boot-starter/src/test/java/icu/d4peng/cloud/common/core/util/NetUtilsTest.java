@@ -14,6 +14,6 @@ public class NetUtilsTest {
 
     @Test
     public void getLocalIP() {
-        System.out.println(NetUtils.getLocalIP());
+        System.out.println(NetUtils.getLocalIp());
     }
 }

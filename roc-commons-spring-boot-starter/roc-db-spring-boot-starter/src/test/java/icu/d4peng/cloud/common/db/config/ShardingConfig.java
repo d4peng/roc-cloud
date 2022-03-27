@@ -18,10 +18,10 @@ package icu.d4peng.cloud.common.db.config;//package icu.d4peng.cloud.common.db.c
 //import java.util.Properties;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2022-02-28 21:35
-// * @description ShardingConfig:
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> ShardingConfig:
 // */
 //@Configuration
 //public class ShardingConfig {

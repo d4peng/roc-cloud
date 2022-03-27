@@ -6,10 +6,10 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
- * @author d4peng
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-24 09:44
- * @description ResultVO:基础结果视图集(单条数据, 或者没有数据)
+ * <p> ResultVO:基础结果视图集(单条数据, 或者没有数据)
+ * @since 2022-03-27 15:43
  */
 @Data
 @Accessors(chain = true)

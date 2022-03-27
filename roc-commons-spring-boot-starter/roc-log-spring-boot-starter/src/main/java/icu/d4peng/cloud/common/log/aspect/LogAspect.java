@@ -14,10 +14,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @author d4peng
+ * <p> LogAspect:注解日志记录切面
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 10:39
- * @description LogAspect:注解日志记录切面
+ * @since 2022-03-27
  */
 @Aspect
 public class LogAspect {

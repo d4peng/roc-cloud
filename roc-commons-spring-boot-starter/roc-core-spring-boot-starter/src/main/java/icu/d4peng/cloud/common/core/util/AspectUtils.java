@@ -6,10 +6,10 @@
 //import java.lang.annotation.Annotation;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-24 18:12
-// * @description AspectUtils:切面编程工具类
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> AspectUtils:切面编程工具类
 // */
 //public class AspectUtils {
 //

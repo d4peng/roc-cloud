@@ -7,10 +7,10 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * @author d4peng
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-21 21:48
- * @description NetUtils:网络工具
+ * <p> NetUtils:网络工具
+ * @since 2022-03-27 15:43
  */
 public class NetUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(NetUtils.class);
@@ -33,7 +33,7 @@ public class NetUtils {
         }
     }
 
-    public static String getLocalIP() {
+    public static String getLocalIp() {
         InetAddress inetAddress = getInetAddress();
         if (inetAddress != null) {
             return inetAddress.getHostAddress();

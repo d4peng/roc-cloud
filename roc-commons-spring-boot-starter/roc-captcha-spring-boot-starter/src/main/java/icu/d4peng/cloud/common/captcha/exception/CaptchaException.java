@@ -3,10 +3,11 @@ package icu.d4peng.cloud.common.captcha.exception;
 import icu.d4peng.cloud.common.core.exception.BaseException;
 
 /**
- * @author d4peng
+ * <p> CaptchaException: 验证码异常
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 10:27
- * @description CaptchaException: 验证码异常
+ * @since 2022-03-27
  */
 public class CaptchaException extends BaseException {
     /**

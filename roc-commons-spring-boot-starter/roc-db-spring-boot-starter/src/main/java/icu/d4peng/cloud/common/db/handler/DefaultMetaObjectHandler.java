@@ -6,10 +6,11 @@ import org.apache.ibatis.reflection.MetaObject;
 import java.time.LocalDateTime;
 
 /**
- * @author d4peng
+ * <p> DefaultMetaObjectHandler:默认父类填充器
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 16:22
- * @description DefaultMetaObjectHandler:默认父类填充器
+ * @since 2022-03-27
  */
 public class DefaultMetaObjectHandler implements MetaObjectHandler {
     /**

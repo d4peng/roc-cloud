@@ -1,6 +1,6 @@
 package icu.d4peng.cloud.common.cache.properties;
 
-import icu.d4peng.cloud.common.cache.serializer.FastJSONSerializer;
+import icu.d4peng.cloud.common.cache.serializer.FastJsonSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -9,10 +9,11 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author d4peng
+ * <p> CacheProperties:缓存配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 16:44
- * @description CacheProperties:缓存配置
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)
@@ -33,8 +34,8 @@ public class CacheProperties extends J2CacheConfig implements InitializingBean {
      */
     @Override
     public void afterPropertiesSet() {
-        if (this.getSerialization() == null || this.getSerialization().equals("fastjson")) {
-            this.setSerialization(FastJSONSerializer.class.getName());
+        if (this.getSerialization() == null || "fastjson".equals(this.getSerialization())) {
+            this.setSerialization(FastJsonSerializer.class.getName());
         }
     }
 }

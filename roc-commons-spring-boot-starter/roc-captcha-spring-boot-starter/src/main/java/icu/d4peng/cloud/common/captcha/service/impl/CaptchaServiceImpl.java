@@ -9,10 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author d4peng
+ * <p> CaptchaServiceImpl: 验证码实现类
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-27 10:23
- * @description CaptchaServiceImpl: 验证码实现类
+ * @since 2022-03-27
  */
 public class CaptchaServiceImpl implements CaptchaService {
     private static final Logger LOGGER = LoggerFactory.getLogger(CaptchaServiceImpl.class);

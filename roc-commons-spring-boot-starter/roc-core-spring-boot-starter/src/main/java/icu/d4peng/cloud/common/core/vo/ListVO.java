@@ -1,16 +1,16 @@
 package icu.d4peng.cloud.common.core.vo;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @author d4peng
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-24 09:31
- * @description ListVO:列表视图
+ * <p> ListVO:列表视图
+ * @since 2022-03-27 15:43
  */
 @Data
 @Accessors(chain = true)
@@ -24,8 +24,8 @@ public class ListVO<T> extends BaseVO {
      * 数据集合
      */
     private Collection<T> items;
-/*
-    *//**
+    /*
+     *//**
      * 静态构建方法
      *
      * @param code    状态码

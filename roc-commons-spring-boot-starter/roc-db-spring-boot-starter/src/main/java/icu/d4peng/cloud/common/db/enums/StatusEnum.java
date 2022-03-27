@@ -4,15 +4,25 @@ import com.baomidou.mybatisplus.annotation.IEnum;
 import lombok.Getter;
 
 /**
- * @author d4peng
+ * <p> StatusEnum:状态枚举
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2022-03-19 14:23
- * @description StatusEnum:
+ * @since 2022-03-27
  */
 @Getter
 public enum StatusEnum implements IEnum<Integer> {
+    /**
+     * 未知
+     */
     UNKNOWN(-1, "UNKNOWN"),
+    /**
+     * 成功
+     */
     SUCCESS(0, "SUCCESS"),
+    /**
+     * 失败
+     */
     FAILED(1, "FAILED"),
     ;
     /**

@@ -1,6 +1,5 @@
 package icu.d4peng.cloud.common.db.domain;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -9,14 +8,15 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @author d4peng
+ * <p> AbstractSuperEntity:数据库domain超级父类
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 16:21
- * @description SuperEntity:数据库domain超级父类
+ * @since 2022-03-27
  */
 @Data
 @Accessors(chain = true)
-public abstract class SuperEntity implements Serializable {
+public abstract class AbstractSuperEntity implements Serializable {
     /**
      * 这个ID是使用雪花算法来生成的ID,使用的是容器中的Bean
      */

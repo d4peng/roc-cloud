@@ -23,10 +23,11 @@ import org.springframework.context.annotation.Import;
 import java.util.List;
 
 /**
- * @author d4peng
+ * <p> DruidDataSourceAutoConfiguration:Druid数据源自动配置
+ *
+ * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @date 2021-12-29 18:36
- * @description DruidDataSourceAutoConfiguration:Druid数据源自动配置
+ * @since 2022-03-27
  */
 @Configuration
 @ConditionalOnClass(DruidDataSource.class)

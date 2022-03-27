@@ -8,10 +8,10 @@
 //import java.util.Properties;
 //
 ///**
-// * @author d4peng
-// * @version 1.0.0
-// * @date 2021-12-24 18:16
-// * @description PropertiesUtils:properties工具类
+// * @author <a href="mailto:d4peng@qq.com">d4peng</a>
+// *  @version 1.0.0
+//
+// * <p> PropertiesUtils:properties工具类
 // */
 //public class PropertiesUtils {
 //    private static final Logger LOGGER = LoggerFactory.getLogger(PropertiesUtils.class);
