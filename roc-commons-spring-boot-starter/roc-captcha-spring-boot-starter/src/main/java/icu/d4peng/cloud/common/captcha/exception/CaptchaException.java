@@ -1,6 +1,6 @@
 package icu.d4peng.cloud.common.captcha.exception;
 
-import icu.d4peng.cloud.common.core.exception.BaseException;
+import icu.d4peng.cloud.common.core.exception.AbstractSuperException;
 
 /**
  * <p> CaptchaException: 验证码异常
@@ -9,7 +9,7 @@ import icu.d4peng.cloud.common.core.exception.BaseException;
  * @version 1.0.0
  * @since 2022-03-27
  */
-public class CaptchaException extends BaseException {
+public class CaptchaException extends AbstractSuperException {
     /**
      * 未找到类型
      */
@@ -19,19 +19,19 @@ public class CaptchaException extends BaseException {
         super();
     }
 
-    public CaptchaException(String message) {
-        super(message);
+    public CaptchaException(String msg) {
+        super(msg);
     }
 
-    public CaptchaException(String message, Throwable cause) {
-        super(message, cause);
+    public CaptchaException(int code, String msg) {
+        super(code, msg);
     }
 
-    public CaptchaException(Throwable cause) {
-        super(cause);
+    public CaptchaException(Throwable throwable) {
+        super(throwable);
     }
 
-    protected CaptchaException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public CaptchaException(int code, String msg, Throwable throwable) {
+        super(code, msg, throwable);
     }
 }

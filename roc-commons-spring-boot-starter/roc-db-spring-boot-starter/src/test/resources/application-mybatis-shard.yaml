@@ -56,4 +56,3 @@ roc:
       filter:
         stat:
           enabled: false
-  spring.shard

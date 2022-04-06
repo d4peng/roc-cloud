@@ -1,7 +1,6 @@
 package icu.d4peng.cloud.common.db.properties;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -11,8 +10,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 @ConfigurationProperties(prefix = DruidStatProperties.PREFIX)
 public class DruidStatProperties {
     /**
@@ -21,6 +18,32 @@ public class DruidStatProperties {
     public static final String PREFIX = "roc.db.druid.stat";
     private StatViewServlet statViewServlet = new StatViewServlet();
     private WebStatFilter webStatFilter = new WebStatFilter();
+
+    public StatViewServlet getStatViewServlet() {
+        return statViewServlet;
+    }
+
+    public DruidStatProperties setStatViewServlet(StatViewServlet statViewServlet) {
+        this.statViewServlet = statViewServlet;
+        return this;
+    }
+
+    public WebStatFilter getWebStatFilter() {
+        return webStatFilter;
+    }
+
+    public DruidStatProperties setWebStatFilter(WebStatFilter webStatFilter) {
+        this.webStatFilter = webStatFilter;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("statViewServlet", statViewServlet)
+                .append("webStatFilter", webStatFilter)
+                .toString();
+    }
 
     public static class StatViewServlet {
         private boolean enabled = true;
@@ -85,6 +108,19 @@ public class DruidStatProperties {
 
         public void setResetEnable(String resetEnable) {
             this.resetEnable = resetEnable;
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .append("enabled", enabled)
+                    .append("urlPattern", urlPattern)
+                    .append("allow", allow)
+                    .append("deny", deny)
+                    .append("loginUsername", loginUsername)
+                    .append("loginPassword", loginPassword)
+                    .append("resetEnable", resetEnable)
+                    .toString();
         }
     }
 
@@ -160,6 +196,20 @@ public class DruidStatProperties {
 
         public void setProfileEnable(String profileEnable) {
             this.profileEnable = profileEnable;
+        }
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this)
+                    .append("enabled", enabled)
+                    .append("urlPattern", urlPattern)
+                    .append("exclusions", exclusions)
+                    .append("sessionStatMaxCount", sessionStatMaxCount)
+                    .append("sessionStatEnable", sessionStatEnable)
+                    .append("principalSessionName", principalSessionName)
+                    .append("principalCookieName", principalCookieName)
+                    .append("profileEnable", profileEnable)
+                    .toString();
         }
     }
 }

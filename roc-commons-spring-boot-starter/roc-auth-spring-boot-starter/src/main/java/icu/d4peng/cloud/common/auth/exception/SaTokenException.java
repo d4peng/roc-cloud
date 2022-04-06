@@ -1,6 +1,6 @@
 package icu.d4peng.cloud.common.auth.exception;
 
-import icu.d4peng.cloud.common.core.exception.BaseException;
+import icu.d4peng.cloud.common.core.exception.AbstractSuperException;
 
 /**
  * <p> SaTokenException: SaToken异常
@@ -9,25 +9,25 @@ import icu.d4peng.cloud.common.core.exception.BaseException;
  * @version 1.0.0
  * @since 2022-03-27
  */
-public class SaTokenException extends BaseException {
+public class SaTokenException extends AbstractSuperException {
 
     public SaTokenException() {
         super();
     }
 
-    public SaTokenException(String message) {
-        super(message);
+    public SaTokenException(String msg) {
+        super(msg);
     }
 
-    public SaTokenException(String message, Throwable cause) {
-        super(message, cause);
+    public SaTokenException(int code, String msg) {
+        super(code, msg);
     }
 
-    public SaTokenException(Throwable cause) {
-        super(cause);
+    public SaTokenException(Throwable throwable) {
+        super(throwable);
     }
 
-    protected SaTokenException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public SaTokenException(int code, String msg, Throwable throwable) {
+        super(code, msg, throwable);
     }
 }

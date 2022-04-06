@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -32,10 +31,5 @@ public class SmsServiceTest {
         JSONObject params = new JSONObject();
         params.put("code", "4396");
         this.smsService.sendSms(collections, params);
-    }
-
-    @Test
-    public void testQuerySms() {
-        System.out.println(this.smsService.querySms("17719444996", LocalDateTime.now()));
     }
 }

@@ -6,24 +6,24 @@ package icu.d4peng.cloud.common.core.exception;
  * <p> InvocationException:
  * @since 2022-03-27 15:43
  */
-public class InvocationException extends BaseException {
+public class InvocationException extends AbstractSuperException {
     public InvocationException() {
         super();
     }
 
-    public InvocationException(String message) {
-        super(message);
+    public InvocationException(String msg) {
+        super(msg);
     }
 
-    public InvocationException(String message, Throwable cause) {
-        super(message, cause);
+    public InvocationException(int code, String msg) {
+        super(code, msg);
     }
 
-    public InvocationException(Throwable cause) {
-        super(cause);
+    public InvocationException(Throwable throwable) {
+        super(throwable);
     }
 
-    protected InvocationException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public InvocationException(int code, String msg, Throwable throwable) {
+        super(code, msg, throwable);
     }
 }

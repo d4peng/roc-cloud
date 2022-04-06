@@ -3,8 +3,7 @@ package icu.d4peng.cloud.common.log.properties;
 import icu.d4peng.cloud.common.log.generator.LogGenerator;
 import icu.d4peng.cloud.common.log.generator.spanid.SpanIdGenerator;
 import icu.d4peng.cloud.common.log.generator.traceid.TraceIdGenerator;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -15,8 +14,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 @ConfigurationProperties(prefix = LogProperties.PREFIX)
 public class LogProperties implements InitializingBean {
     /**
@@ -59,5 +56,71 @@ public class LogProperties implements InitializingBean {
         Class<?> spanIdGeneratorClass = Class.forName(this.spanIdGenerator);
         SpanIdGenerator spanIdGenerator = ((SpanIdGenerator) spanIdGeneratorClass.newInstance());
         LogGenerator.setSpanIdGenerator(spanIdGenerator);
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public LogProperties setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    public String getMdcPattern() {
+        return mdcPattern;
+    }
+
+    public LogProperties setMdcPattern(String mdcPattern) {
+        this.mdcPattern = mdcPattern;
+        return this;
+    }
+
+    public String getTraceIdGenerator() {
+        return traceIdGenerator;
+    }
+
+    public LogProperties setTraceIdGenerator(String traceIdGenerator) {
+        this.traceIdGenerator = traceIdGenerator;
+        return this;
+    }
+
+    public String getSpanIdGenerator() {
+        return spanIdGenerator;
+    }
+
+    public LogProperties setSpanIdGenerator(String spanIdGenerator) {
+        this.spanIdGenerator = spanIdGenerator;
+        return this;
+    }
+
+    public boolean isEnableAopLog() {
+        return enableAopLog;
+    }
+
+    public LogProperties setEnableAopLog(boolean enableAopLog) {
+        this.enableAopLog = enableAopLog;
+        return this;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public LogProperties setPath(String path) {
+        this.path = path;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .append("mdcPattern", mdcPattern)
+                .append("traceIdGenerator", traceIdGenerator)
+                .append("spanIdGenerator", spanIdGenerator)
+                .append("enableAopLog", enableAopLog)
+                .append("path", path)
+                .toString();
     }
 }

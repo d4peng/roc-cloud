@@ -1,9 +1,7 @@
 package icu.d4peng.cloud.common.auth.properties;
 
 import cn.dev33.satoken.config.SaTokenConfig;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -14,10 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 @ConfigurationProperties(prefix = SaTokenProperties.PREFIX)
-@EqualsAndHashCode(callSuper = true)
 public class SaTokenProperties extends SaTokenConfig implements InitializingBean {
     /**
      * 前缀
@@ -31,5 +26,21 @@ public class SaTokenProperties extends SaTokenConfig implements InitializingBean
     @Override
     public void afterPropertiesSet() {
         this.setIsPrint(false);
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public SaTokenProperties setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .toString();
     }
 }

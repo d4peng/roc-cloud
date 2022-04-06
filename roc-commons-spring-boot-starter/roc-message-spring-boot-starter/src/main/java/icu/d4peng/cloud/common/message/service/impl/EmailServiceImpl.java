@@ -1,8 +1,8 @@
 package icu.d4peng.cloud.common.message.service.impl;
 
+import icu.d4peng.cloud.common.message.exception.MessageException;
 import icu.d4peng.cloud.common.message.properties.EmailProperties;
 import icu.d4peng.cloud.common.message.service.EmailService;
-import lombok.Builder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,7 +10,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.util.Map;
 
@@ -38,9 +37,9 @@ public class EmailServiceImpl implements EmailService {
         this.mimeMessage = this.javaMailSender.createMimeMessage();
         try {
             this.mimeMessageHelper = new MimeMessageHelper(this.mimeMessage, true);
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             LOGGER.error(e.getMessage());
-            throw new RuntimeException(e.getCause());
+            throw new MessageException(e.getCause());
         }
     }
 
@@ -51,11 +50,10 @@ public class EmailServiceImpl implements EmailService {
             this.mimeMessageHelper.setSubject(subject);
             this.mimeMessageHelper.setText(context, false);
             this.mimeMessageHelper.setFrom(this.emailProperties.getUsername());
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             LOGGER.error(e.getMessage());
-            throw new RuntimeException(e.getCause());
+            throw new MessageException(e.getCause());
         }
-        this.javaMailSender.send(this.mimeMessage);
         this.javaMailSender.send(this.mimeMessage);
     }
 
@@ -66,11 +64,10 @@ public class EmailServiceImpl implements EmailService {
             this.mimeMessageHelper.setSubject(subject);
             this.mimeMessageHelper.setText(mapConvertTemplate(templateName, context), true);
             this.mimeMessageHelper.setFrom(this.emailProperties.getUsername());
-        } catch (MessagingException e) {
+        } catch (Exception e) {
             LOGGER.error(e.getMessage());
-            throw new RuntimeException(e.getCause());
+            throw new MessageException(e.getCause());
         }
-        this.javaMailSender.send(this.mimeMessage);
         this.javaMailSender.send(this.mimeMessage);
     }
 
@@ -84,7 +81,14 @@ public class EmailServiceImpl implements EmailService {
     private String mapConvertTemplate(String templateName, Map<String, Object> map) {
         Context context = new Context();
         context.setVariables(map);
-        return this.templateEngine.process(templateName, context);
+        String result = "";
+        try {
+            result = this.templateEngine.process(templateName, context);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            throw new MessageException(e.getCause());
+        }
+        return result;
     }
 
 }

@@ -26,7 +26,7 @@ public class CacheServiceImpl implements CacheService {
     }
 
 
-@Override
+    @Override
     public CacheChannel getCacheChannel() {
         return this.cacheChannel;
     }

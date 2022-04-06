@@ -1,10 +1,8 @@
 package icu.d4peng.cloud.common.cache.properties;
 
 import icu.d4peng.cloud.common.cache.serializer.FastJsonSerializer;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 import net.oschina.j2cache.J2CacheConfig;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -15,10 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 @ConfigurationProperties(prefix = CacheProperties.PREFIX)
-@EqualsAndHashCode(callSuper = true)
 public class CacheProperties extends J2CacheConfig implements InitializingBean {
     /**
      * 前缀
@@ -37,5 +32,21 @@ public class CacheProperties extends J2CacheConfig implements InitializingBean {
         if (this.getSerialization() == null || "fastjson".equals(this.getSerialization())) {
             this.setSerialization(FastJsonSerializer.class.getName());
         }
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public CacheProperties setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .toString();
     }
 }

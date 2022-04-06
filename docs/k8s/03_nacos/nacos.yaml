@@ -1,0 +1,158 @@
+# table先执行sql
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-nacos
+  namespace: ns-dev
+  labels:
+    name: cm-nacos
+data:
+  mode: "cluster"
+  prefer.host.mode: "hostname"
+  spring.datasource.platform: "mysql"
+  # 这个是service的内网IP,kubectl get svc -n ns-dev
+  # svc-mysql.ns-dev.svc.cluster.local
+  mysql.service.host: "svc-mysql.ns-dev.svc.cluster.local"
+  mysql.service.port: "3306"
+  mysql.service.db.name: "nacos"
+  mysql.service.user: "nacos"
+  mysql.service.password: "nacos"
+  mysql.service.db.param: "allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&characterEncoding=UTF8&serverTimezone=UTC&connectTimeout=10000&socketTimeout=30000&autoReconnect=true&useSSL=false"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-nacos-headless
+  namespace: ns-dev
+  labels:
+    name: svc-nacos-headless
+spec:
+  type: ClusterIP
+  clusterIP: None
+  ports:
+    - port: 8848
+      name: server
+      targetPort: 8848
+    - port: 9848
+      name: client-rpc
+      targetPort: 9848
+    - port: 9849
+      name: raft-rpc
+      targetPort: 9849
+    - port: 7848
+      name: old-raft-rpc
+      targetPort: 7848
+  selector:
+    name: sts-nacos
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sts-nacos
+  namespace: ns-dev
+  labels:
+    name: sts-nacos
+spec:
+  serviceName: svc-nacos-headless
+  replicas: 3
+  selector:
+    matchLabels:
+      name: sts-nacos
+  template:
+    metadata:
+      name: sts-nacos
+      namespace: ns-dev
+      labels:
+        name: sts-nacos
+      annotations:
+        pod.alpha.kubernetes.io/initialized: "true"
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: name
+                    operator: In
+                    values:
+                      - sts-nacos
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - name: nacos
+          image: nacos/nacos-server:latest
+          ports:
+            - containerPort: 8848
+              name: client
+            - containerPort: 9848
+              name: client-rpc
+            - containerPort: 9849
+              name: raft-rpc
+            - containerPort: 7848
+              name: old-raft-rpc
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: mode
+            - name: NACOS_SERVERS
+              value: "sts-nacos-0.svc-nacos-headless.ns-dev.svc.cluster.local:8848 sts-nacos-1.svc-nacos-headless.ns-dev.svc.cluster.local:8848 sts-nacos-2.svc-nacos-headless.ns-dev.svc.cluster.local:8848"
+            - name: PREFER_HOST_MODE
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: prefer.host.mode
+            - name: SPRING_DATASOURCE_PLATFORM
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: spring.datasource.platform
+            - name: MYSQL_SERVICE_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: mysql.service.host
+            - name: MYSQL_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: mysql.service.port
+            - name: MYSQL_SERVICE_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: mysql.service.db.name
+            - name: MYSQL_SERVICE_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: mysql.service.user
+            - name: MYSQL_SERVICE_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: mysql.service.password
+            - name: MYSQL_SERVICE_DB_PARAM
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-nacos
+                  key: mysql.service.db.param
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-nacos
+  namespace: ns-dev
+  labels:
+    name: ingress-nacos
+spec:
+  rules:
+    - host: nacos.d4peng.icu
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: svc-nacos-headless
+              servicePort: 8848

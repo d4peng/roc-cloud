@@ -1,9 +1,6 @@
 package icu.d4peng.cloud.common.core.vo;
 
 import com.alibaba.fastjson.JSON;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
@@ -11,9 +8,6 @@ import lombok.experimental.Accessors;
  * <p> ResultVO:基础结果视图集(单条数据, 或者没有数据)
  * @since 2022-03-27 15:43
  */
-@Data
-@Accessors(chain = true)
-@EqualsAndHashCode(callSuper = true)
 public class ResultVO<T> extends BaseVO {
     /**
      * 结果
@@ -37,35 +31,33 @@ public class ResultVO<T> extends BaseVO {
         return resultVO;
     }
 
+    /**
+     * 静态构建
+     *
+     * @param dbResult 结果:0-失败,1-成功
+     * @param data     数据
+     * @param <T>      泛型
+     * @return 结果视图
+     */
+    public static <T> ResultVO<T> build(Integer dbResult, T data) {
+        if (dbResult != 0) {
+            return build(200, "OK", data);
+        } else {
+            return build(400, "Bad Request", data);
+        }
+    }
+
     @Override
     public String toString() {
         return JSON.toJSONString(this);
     }
 
-    /**
-     * 静态构建(失败)
-     *
-     * @param data 数据
-     * @param <D>  泛型
-     * @return 结果视图
-     *//*
-
-    public static <D> ResultVO<D> fail(D data) {
-        return build(400, "Bad Request", data);
+    public T getData() {
+        return data;
     }
 
-    */
-/**
- * 静态构建(成功)
- *
- * @param data 数据
- * @param <D>  泛型
- * @return 结果视图
- *//*
-
-    public static <D> ResultVO<D> success(D data) {
-        return build(200, "OK", data);
+    public ResultVO<T> setData(T data) {
+        this.data = data;
+        return this;
     }
-*/
-
 }

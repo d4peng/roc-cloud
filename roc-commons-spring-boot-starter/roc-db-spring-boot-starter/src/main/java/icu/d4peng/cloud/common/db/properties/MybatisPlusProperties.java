@@ -3,8 +3,7 @@ package icu.d4peng.cloud.common.db.properties;
 import com.baomidou.mybatisplus.core.MybatisConfiguration;
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.core.toolkit.GlobalConfigUtils;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.ibatis.session.ExecutorType;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -25,8 +24,6 @@ import java.util.stream.Stream;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 @ConfigurationProperties(prefix = MybatisPlusProperties.PREFIX)
 public class MybatisPlusProperties implements InitializingBean {
     /**
@@ -109,6 +106,132 @@ public class MybatisPlusProperties implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         this.getGlobalConfig().setBanner(false);
-        this.setTypeEnumsPackage(this.getTypeEnumsPackage() + ";icu.d4peng.cloud.common.db.enums");
+        //this.setTypeEnumsPackage(this.getTypeEnumsPackage() + ";icu.d4peng.cloud.common.db.enums");
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public MybatisPlusProperties setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    public String getConfigLocation() {
+        return configLocation;
+    }
+
+    public MybatisPlusProperties setConfigLocation(String configLocation) {
+        this.configLocation = configLocation;
+        return this;
+    }
+
+    public String[] getMapperLocations() {
+        return mapperLocations;
+    }
+
+    public MybatisPlusProperties setMapperLocations(String[] mapperLocations) {
+        this.mapperLocations = mapperLocations;
+        return this;
+    }
+
+    public String getTypeAliasesPackage() {
+        return typeAliasesPackage;
+    }
+
+    public MybatisPlusProperties setTypeAliasesPackage(String typeAliasesPackage) {
+        this.typeAliasesPackage = typeAliasesPackage;
+        return this;
+    }
+
+    public Class<?> getTypeAliasesSuperType() {
+        return typeAliasesSuperType;
+    }
+
+    public MybatisPlusProperties setTypeAliasesSuperType(Class<?> typeAliasesSuperType) {
+        this.typeAliasesSuperType = typeAliasesSuperType;
+        return this;
+    }
+
+    public String getTypeHandlersPackage() {
+        return typeHandlersPackage;
+    }
+
+    public MybatisPlusProperties setTypeHandlersPackage(String typeHandlersPackage) {
+        this.typeHandlersPackage = typeHandlersPackage;
+        return this;
+    }
+
+    public boolean isCheckConfigLocation() {
+        return checkConfigLocation;
+    }
+
+    public MybatisPlusProperties setCheckConfigLocation(boolean checkConfigLocation) {
+        this.checkConfigLocation = checkConfigLocation;
+        return this;
+    }
+
+    public ExecutorType getExecutorType() {
+        return executorType;
+    }
+
+    public MybatisPlusProperties setExecutorType(ExecutorType executorType) {
+        this.executorType = executorType;
+        return this;
+    }
+
+    public Properties getConfigurationProperties() {
+        return configurationProperties;
+    }
+
+    public MybatisPlusProperties setConfigurationProperties(Properties configurationProperties) {
+        this.configurationProperties = configurationProperties;
+        return this;
+    }
+
+    public MybatisConfiguration getConfiguration() {
+        return configuration;
+    }
+
+    public MybatisPlusProperties setConfiguration(MybatisConfiguration configuration) {
+        this.configuration = configuration;
+        return this;
+    }
+
+    public String getTypeEnumsPackage() {
+        return typeEnumsPackage;
+    }
+
+    public MybatisPlusProperties setTypeEnumsPackage(String typeEnumsPackage) {
+        this.typeEnumsPackage = typeEnumsPackage;
+        return this;
+    }
+
+    public GlobalConfig getGlobalConfig() {
+        return globalConfig;
+    }
+
+    public MybatisPlusProperties setGlobalConfig(GlobalConfig globalConfig) {
+        this.globalConfig = globalConfig;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .append("configLocation", configLocation)
+                .append("mapperLocations", mapperLocations)
+                .append("typeAliasesPackage", typeAliasesPackage)
+                .append("typeAliasesSuperType", typeAliasesSuperType)
+                .append("typeHandlersPackage", typeHandlersPackage)
+                .append("checkConfigLocation", checkConfigLocation)
+                .append("executorType", executorType)
+                .append("configurationProperties", configurationProperties)
+                .append("configuration", configuration)
+                .append("typeEnumsPackage", typeEnumsPackage)
+                .append("globalConfig", globalConfig)
+                .toString();
     }
 }

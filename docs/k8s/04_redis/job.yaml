@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: job-redis
+  namespace: ns-dev
+  labels:
+    name: job-redis
+data:
+  trib: |
+    yum install -y epel-release
+    yum install -y redis-trib bind-utils expect
+    count=0
+    result=""
+    while true; do
+      if [ ${count} == ${REDIS_REPLICAS} ]; then
+        break
+      else
+        tmp=`dig +short sts-redis-${count}.svc-redis-headless.ns-dev.svc.cluster.local`
+        if [ "${tmp}"x != ""x ]; then
+          result="${result} ${tmp}:6379"
+          count=`expr ${count} + 1`
+        else
+          sleep 3
+        fi
+      fi
+    done
+    echo ${result}
+    expect <<EOF
+    spawn redis-trib create --replicas 1 ${result}
+    expect "yes"
+    send "yes\r"
+    expect eof
+    EOF
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-redis
+  namespace: ns-dev
+  labels:
+    name: job-redis
+spec:
+  completions: 1
+  parallelism: 1
+  activeDeadlineSeconds: 600
+  backoffLimit: 1
+  manualSelector: true
+  selector:
+    matchLabels:
+      name: job-redis
+  template:
+    metadata:
+      name: job-redis
+      namespace: ns-dev
+      labels:
+        name: job-redis
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: centos7
+          image: centos:7
+          command:
+            - "/bin/bash"
+            - "/tmp/trib.sh"
+          env:
+            - name: REDIS_REPLICAS
+              value: "6"
+          volumeMounts:
+            - name: redis-sh
+              mountPath: /tmp
+      volumes:
+        - name: redis-sh
+          configMap:
+            name: job-redis
+            items:
+              - key: trib
+                path: "trib.sh"

@@ -1,7 +1,6 @@
 package icu.d4peng.cloud.common.mvc.properties;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -11,8 +10,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 @ConfigurationProperties(prefix = MvcProperties.PREFIX)
 public class MvcProperties {
     /**
@@ -36,4 +33,39 @@ public class MvcProperties {
      */
     private String globalTimeFormatRegex = "yyyy-MM-dd HH:mm:ss";
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public MvcProperties setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    public boolean isEnableDefaultErrorsHandler() {
+        return enableDefaultErrorsHandler;
+    }
+
+    public MvcProperties setEnableDefaultErrorsHandler(boolean enableDefaultErrorsHandler) {
+        this.enableDefaultErrorsHandler = enableDefaultErrorsHandler;
+        return this;
+    }
+
+    public String getGlobalTimeFormatRegex() {
+        return globalTimeFormatRegex;
+    }
+
+    public MvcProperties setGlobalTimeFormatRegex(String globalTimeFormatRegex) {
+        this.globalTimeFormatRegex = globalTimeFormatRegex;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .append("enableDefaultErrorsHandler", enableDefaultErrorsHandler)
+                .append("globalTimeFormatRegex", globalTimeFormatRegex)
+                .toString();
+    }
 }

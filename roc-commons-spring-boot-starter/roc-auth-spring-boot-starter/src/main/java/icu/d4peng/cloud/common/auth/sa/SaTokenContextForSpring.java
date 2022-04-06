@@ -21,18 +21,22 @@ public class SaTokenContextForSpring implements SaTokenContext {
     public SaRequest getRequest() {
         return new SaRequestForServlet(SpringMvcUtil.getRequest());
     }
+
     @Override
     public SaResponse getResponse() {
         return new SaResponseForServlet(SpringMvcUtil.getResponse());
     }
+
     @Override
     public SaStorage getStorage() {
         return new SaStorageForServlet(SpringMvcUtil.getRequest());
     }
+
     @Override
     public boolean matchPath(String pattern, String path) {
         return SaPathMatcherHolder.getPathMatcher().match(pattern, path);
     }
+
     @Override
     public boolean isValid() {
         return SpringMvcUtil.isWeb();

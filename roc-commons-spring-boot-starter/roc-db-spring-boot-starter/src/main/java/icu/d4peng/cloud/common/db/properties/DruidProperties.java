@@ -1,9 +1,7 @@
 package icu.d4peng.cloud.common.db.properties;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -16,10 +14,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 @ConfigurationProperties(prefix = DruidProperties.PREFIX)
-@EqualsAndHashCode(callSuper = true)
 public class DruidProperties extends DruidDataSource implements InitializingBean {
     /**
      * 前缀
@@ -49,5 +44,31 @@ public class DruidProperties extends DruidDataSource implements InitializingBean
         if (super.getDriverClassName() == null) {
             super.setDriverClassName(this.basicProperties.getDriverClassName());
         }
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public DruidProperties setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    public DataSourceProperties getBasicProperties() {
+        return basicProperties;
+    }
+
+    public DruidProperties setBasicProperties(DataSourceProperties basicProperties) {
+        this.basicProperties = basicProperties;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .append("basicProperties", basicProperties)
+                .toString();
     }
 }

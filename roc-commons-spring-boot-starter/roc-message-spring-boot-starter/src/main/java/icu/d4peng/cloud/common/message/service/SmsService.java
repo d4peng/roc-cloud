@@ -2,7 +2,6 @@ package icu.d4peng.cloud.common.message.service;
 
 import com.alibaba.fastjson.JSONObject;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 
 /**
@@ -21,12 +20,4 @@ public interface SmsService {
      */
     void sendSms(Collection<String> phoneNumbers, JSONObject templateParam);
 
-    /**
-     * 查询某个手机在某天发送的前最近50条短信
-     *
-     * @param phoneNumber 手机号
-     * @param sendDate    发送日期,可以传空,就是当天
-     * @return 查询的结果为JSON字符串
-     */
-    JSONObject querySms(String phoneNumber, LocalDateTime sendDate);
 }

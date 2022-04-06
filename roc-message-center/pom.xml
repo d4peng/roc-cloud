@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>roc-cloud</artifactId>
+        <groupId>icu.d4peng.cloud</groupId>
+        <version>1.0.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>roc-message-center</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>icu.d4peng.cloud</groupId>
+            <artifactId>roc-db-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>icu.d4peng.cloud</groupId>
+            <artifactId>roc-message-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>icu.d4peng.cloud</groupId>
+            <artifactId>roc-mvc-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <mainClass>icu.d4peng.cloud.message.MessageApplication</mainClass>
+                            <classpathPrefix>lib</classpathPrefix>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                    </archive>
+                    <excludes>
+                        <exclude>templates/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <includes>
+                                        <include>*.yaml</include>
+                                        <include>*.yml</include>
+                                        <include>templates/**</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <serverId>docker</serverId>
+                    <dockerHost>http://xx.xx.xx.xx:2375</dockerHost>
+                    <imageTags>${project.version}</imageTags>
+                    <imageName>${docker.url}/${project.parent.artifactId}/${project.name}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                            <targetPath>/</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <targetPath>/</targetPath>
+                            <include>*.yaml</include>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <targetPath>/</targetPath>
+                            <include>*.yml</include>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}/lib</directory>
+                            <targetPath>/lib</targetPath>
+                            <include>*.jar</include>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}/templates</directory>
+                            <targetPath>/templates</targetPath>
+                            <include>**</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,7 +1,6 @@
 package icu.d4peng.cloud.common.message.properties;
 
-import lombok.Data;
-import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -11,8 +10,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 @ConfigurationProperties(prefix = SmsProperties.PREFIX)
 public class SmsProperties {
     /**
@@ -40,4 +37,59 @@ public class SmsProperties {
      */
     private String templateCode;
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public SmsProperties setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    public String getAccessKeyId() {
+        return accessKeyId;
+    }
+
+    public SmsProperties setAccessKeyId(String accessKeyId) {
+        this.accessKeyId = accessKeyId;
+        return this;
+    }
+
+    public String getAccessKeySecret() {
+        return accessKeySecret;
+    }
+
+    public SmsProperties setAccessKeySecret(String accessKeySecret) {
+        this.accessKeySecret = accessKeySecret;
+        return this;
+    }
+
+    public String getSignName() {
+        return signName;
+    }
+
+    public SmsProperties setSignName(String signName) {
+        this.signName = signName;
+        return this;
+    }
+
+    public String getTemplateCode() {
+        return templateCode;
+    }
+
+    public SmsProperties setTemplateCode(String templateCode) {
+        this.templateCode = templateCode;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("enabled", enabled)
+                .append("accessKeyId", accessKeyId)
+                .append("accessKeySecret", accessKeySecret)
+                .append("signName", signName)
+                .append("templateCode", templateCode)
+                .toString();
+    }
 }

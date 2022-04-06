@@ -9,6 +9,8 @@
     <version>1.0.0</version>
     <modules>
         <module>roc-commons-spring-boot-starter</module>
+        <module>roc-user-center</module>
+        <module>roc-message-center</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -74,6 +76,7 @@
         <mybatis.plus.version>3.5.1</mybatis.plus.version>
         <sharding.sphere.version>5.1.0</sharding.sphere.version>
         <aliyun.sms.version>2.0.9</aliyun.sms.version>
+        <bcpkix.version>1.70</bcpkix.version>
         <transmittable.version>2.9.0</transmittable.version>
         <forest.version>1.5.16</forest.version>
         <protobuf.version>3.14.0</protobuf.version>
@@ -89,6 +92,11 @@
         <maven.staging.version>1.6.7</maven.staging.version>
         <maven.surefire.version>2.22.2</maven.surefire.version>
         <maven.gpg.version>1.5</maven.gpg.version>
+        <maven.jar.version>3.2.2</maven.jar.version>
+        <maven.dependency.version>3.3.0</maven.dependency.version>
+        <maven.resources.version>3.2.0</maven.resources.version>
+        <docker.url>registry.cn-hangzhou.aliyuncs.com</docker.url>
+        <docker.maven.version>1.2.2</docker.maven.version>
     </properties>
 
     <dependencyManagement>
@@ -234,10 +242,15 @@
                 <version>${aliyun.sms.version}</version>
                 <exclusions>
                     <exclusion>
-                        <artifactId>org.jacoco.agent</artifactId>
                         <groupId>org.jacoco</groupId>
+                        <artifactId>org.jacoco.agent</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcpkix-jdk15on</artifactId>
+                <version>${bcpkix.version}</version>
             </dependency>
 
             <!-- TTL组件 -->
@@ -265,8 +278,6 @@
                 <artifactId>protobuf-java</artifactId>
                 <version>${protobuf.version}</version>
             </dependency>
-
-
 
             <dependency>
                 <groupId>icu.d4peng.cloud</groupId>
@@ -389,6 +400,83 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Docker插件 -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <serverId>docker</serverId>
+                    <dockerHost>http://xx.xx.xx.xx:2375</dockerHost>
+                    <imageTags>${project.version}</imageTags>
+                    <imageName>${docker.url}/${project.parent.artifactId}/${project.name}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                            <targetPath>/</targetPath>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <targetPath>/</targetPath>
+                            <include>*.yaml</include>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}</directory>
+                            <targetPath>/</targetPath>
+                            <include>*.yml</include>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}/lib</directory>
+                            <targetPath>/lib</targetPath>
+                            <include>*.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <includes>
+                                        <include>*.yaml</include>
+                                        <include>*.yml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
 
@@ -400,9 +488,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven.surefire.version}</version>
-                    <configuration>
-                        <skipTests>true</skipTests>
-                    </configuration>
                 </plugin>
 
                 <!-- 部署和发布插件 -->
@@ -410,12 +495,6 @@
                     <groupId>org.sonatype.plugins</groupId>
                     <artifactId>nexus-staging-maven-plugin</artifactId>
                     <version>${maven.staging.version}</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <serverId>release</serverId>
-                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
-                    </configuration>
                 </plugin>
 
                 <!-- maven源代码插件 -->
@@ -423,14 +502,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <version>${maven.source.version}</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
 
                 <!-- javadoc插件 -->
@@ -438,15 +509,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>${maven.doc.version}</version>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
 
                 <!-- GPG签名插件 -->
@@ -454,16 +516,36 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>
                     <version>${maven.gpg.version}</version>
-                    <executions>
-                        <execution>
-                            <id>sign-artifacts</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>sign</goal>
-                            </goals>
-                        </execution>
-                    </executions>
                 </plugin>
+
+                <!-- Docker插件 -->
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.maven.version}</version>
+                </plugin>
+
+                <!-- Jar插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven.jar.version}</version>
+                </plugin>
+
+                <!-- Dependency插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven.dependency.version}</version>
+                </plugin>
+
+                <!-- resources插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven.resources.version}</version>
+                </plugin>
+
             </plugins>
         </pluginManagement>
     </build>

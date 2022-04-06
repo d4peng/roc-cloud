@@ -1,0 +1,124 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: sa-nfs
+  namespace: ns-dev
+  labels:
+    name: sa-nfs
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cr-nfs
+  labels:
+    name: cr-nfs
+rules:
+  - apiGroups: [ "" ]
+    resources: [ "persistentvolumes" ]
+    verbs: [ "get", "list", "watch", "create", "delete" ]
+  - apiGroups: [ "" ]
+    resources: [ "persistentvolumeclaims" ]
+    verbs: [ "get", "list", "watch", "update" ]
+  - apiGroups: [ "" ]
+    resources: [ "endpoints" ]
+    verbs: [ "get", "list", "watch", "create", "update", "patch" ]
+  - apiGroups: [ "storage.k8s.io" ]
+    resources: [ "storageclasses" ]
+    verbs: [ "get", "list", "watch" ]
+  - apiGroups: [ "" ]
+    resources: [ "events" ]
+    verbs: [ "create", "update", "patch" ]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: crb-nfs
+subjects:
+  - kind: ServiceAccount
+    name: sa-nfs
+    namespace: ns-dev
+roleRef:
+  kind: ClusterRole
+  name: cr-nfs
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: r-nfs
+  namespace: ns-dev
+  labels:
+    name: r-nfs
+rules:
+  - apiGroups: [ "" ]
+    resources: [ "endpoints" ]
+    verbs: [ "get", "list", "watch", "create", "update", "patch" ]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: rb-nfs
+  namespace: ns-dev
+  labels:
+    name: rb-nfs
+subjects:
+  - kind: ServiceAccount
+    name: sa-nfs
+    namespace: ns-dev
+roleRef:
+  kind: Role
+  name: r-nfs
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: deploy-nfs
+  namespace: ns-dev
+  labels:
+    name: deploy-nfs
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      name: deploy-nfs
+  template:
+    metadata:
+      name: deploy-nfs
+      namespace: ns-dev
+      labels:
+        name: deploy-nfs
+    spec:
+      serviceAccountName: sa-nfs
+      containers:
+        - name: nfs-client
+          image: lizhenliang/nfs-client-provisioner
+          volumeMounts:
+            - name: nfs-client-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: nfs-storage # storageClass一致
+            - name: NFS_SERVER
+              value: 10.0.4.17
+            - name: NFS_PATH
+              value: /data/share
+      volumes:
+        - name: nfs-client-root
+          nfs:
+            server: 10.0.4.17
+            path: /data/share
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: sc-nfs
+  namespace: ns-dev
+  labels:
+    name: sc-nfs
+provisioner: nfs-storage # 与deploy中一致
+parameters:
+  archiveOnDelete: "false"

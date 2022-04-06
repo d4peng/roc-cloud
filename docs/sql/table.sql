@@ -1,38 +1,74 @@
-CREATE
-DATABASE IF NOT EXISTS roc_cloud;
-USE
-roc_cloud;
+CREATE DATABASE IF NOT EXISTS roc_cloud;
+USE roc_cloud;
 
-#
-t_roc_message表
 DROP TABLE IF EXISTS t_roc_message;
 CREATE TABLE t_roc_message
 (
-    id           bigint primary key NOT NULL COMMENT 'ID',
-    created_time timestamp          NOT NULL COMMENT '创建时间',
-    updated_time timestamp          NOT NULL COMMENT '更新时间',
-    deleted_time timestamp COMMENT '删除时间',
-    status       tinyint            NOT NULL COMMENT '状态',
-    type         tinyint            NOT NULL COMMENT '类型',
-    content      text COMMENT '内容'
+    id           BIGINT PRIMARY KEY NOT NULL COMMENT 'ID',
+    created_time TIMESTAMP          NOT NULL COMMENT '创建时间',
+    updated_time TIMESTAMP          NOT NULL COMMENT '更新时间',
+    deleted_time TIMESTAMP COMMENT '删除时间',
+    status       TINYINT            NOT NULL COMMENT '状态',
+    type         TINYINT            NOT NULL COMMENT '类型',
+    content      TEXT COMMENT '内容'
 ) COMMENT '信息表';
 
-#
-t_roc_user表
 DROP TABLE IF EXISTS t_roc_user;
 CREATE TABLE t_roc_user
 (
-    id           bigint primary key NOT NULL COMMENT 'ID',
-    created_time timestamp          NOT NULL COMMENT '创建时间',
-    updated_time timestamp          NOT NULL COMMENT '更新时间',
-    deleted_time timestamp COMMENT '删除时间',
-    nick_name    varchar(128) COMMENT '昵称',
-    username     varchar(128) COMMENT '用户名',
-    password     varchar(255) COMMENT '密码',
-    phone        varchar(128) COMMENT '手机号',
-    email        varchar(128) COMMENT '邮箱',
-    avatar       varchar(256) COMMENT '头像地址',
-    login_ip     varchar(128) COMMENT '登录IP',
-    status       tinyint(1) COMMENT '用户状态',
-    remark       text COMMENT '备注'
+    id           BIGINT PRIMARY KEY NOT NULL COMMENT 'ID',
+    created_time TIMESTAMP          NOT NULL COMMENT '创建时间',
+    updated_time TIMESTAMP          NOT NULL COMMENT '更新时间',
+    deleted_time TIMESTAMP COMMENT '删除时间',
+    nick_name    VARCHAR(128) COMMENT '昵称',
+    username     VARCHAR(128)       NOT NULL COMMENT '用户名',
+    password     VARCHAR(255)       NOT NULL COMMENT '密码',
+    phone        VARCHAR(128) COMMENT '手机号',
+    email        VARCHAR(128) COMMENT '邮箱',
+    avatar       VARCHAR(256) COMMENT '头像地址',
+    login_ip     VARCHAR(128) COMMENT '登录IP',
+    status       TINYINT(1)         NOT NULL COMMENT '用户状态',
+    remark       TEXT COMMENT '备注'
 ) COMMENT '用户表';
+
+DROP TABLE IF EXISTS t_roc_user_role;
+CREATE TABLE t_roc_user_role
+(
+    id           BIGINT PRIMARY KEY NOT NULL COMMENT 'ID',
+    created_time TIMESTAMP          NOT NULL COMMENT '创建时间',
+    updated_time TIMESTAMP          NOT NULL COMMENT '更新时间',
+    deleted_time TIMESTAMP COMMENT '删除时间',
+    user_id      BIGINT             NOT NULL COMMENT '用户ID',
+    role_id      BIGINT             NOT NULL COMMENT '角色ID'
+) COMMENT '用户角色表';
+
+DROP TABLE IF EXISTS t_roc_role;
+CREATE TABLE t_roc_role
+(
+    id           BIGINT PRIMARY KEY NOT NULL COMMENT 'ID',
+    created_time TIMESTAMP          NOT NULL COMMENT '创建时间',
+    updated_time TIMESTAMP          NOT NULL COMMENT '更新时间',
+    deleted_time TIMESTAMP COMMENT '删除时间',
+    name         VARCHAR(128)       NOT NULL COMMENT '角色名称'
+) COMMENT '角色表';
+
+DROP TABLE IF EXISTS t_roc_role_permission;
+CREATE TABLE t_roc_role_permission
+(
+    id            BIGINT PRIMARY KEY NOT NULL COMMENT 'ID',
+    created_time  TIMESTAMP          NOT NULL COMMENT '创建时间',
+    updated_time  TIMESTAMP          NOT NULL COMMENT '更新时间',
+    deleted_time  TIMESTAMP COMMENT '删除时间',
+    role_id       BIGINT             NOT NULL COMMENT '角色ID',
+    permission_id BIGINT             NOT NULL COMMENT '权限ID'
+) COMMENT '角色权限表';
+
+DROP TABLE IF EXISTS t_roc_permission;
+CREATE TABLE t_roc_permission
+(
+    id           BIGINT PRIMARY KEY NOT NULL COMMENT 'ID',
+    created_time TIMESTAMP          NOT NULL COMMENT '创建时间',
+    updated_time TIMESTAMP          NOT NULL COMMENT '更新时间',
+    deleted_time TIMESTAMP COMMENT '删除时间',
+    name         VARCHAR(128)       NOT NULL COMMENT '权限名称'
+) COMMENT '权限表';

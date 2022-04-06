@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-redisinsight
+  namespace: ns-dev
+  labels:
+    name: deploy-redisinsight
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: deploy-redisinsight
+  template:
+    metadata:
+      name: deploy-redisinsight
+      namespace: ns-dev
+      labels:
+        name: deploy-redisinsight
+    spec:
+      containers:
+        - name: redisinsight
+          image: aalekhpatel07/redisinsight
+          ports:
+            - containerPort: 8001
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-redisinsight
+  namespace: ns-dev
+  labels:
+    name: svc-redisinsight
+spec:
+  type: NodePort
+  ports:
+    - name: redisinsight-port
+      protocol: TCP
+      port: 8001
+      targetPort: 8001
+      nodePort: 32005
+  selector:
+    name: deploy-redisinsight

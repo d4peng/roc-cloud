@@ -7,24 +7,24 @@ package icu.d4peng.cloud.common.core.exception;
  * @version 1.0.0
  * @since 2022-03-27
  */
-public class InstanceException extends BaseException {
+public class InstanceException extends AbstractSuperException {
     public InstanceException() {
         super();
     }
 
-    public InstanceException(String message) {
-        super(message);
+    public InstanceException(String msg) {
+        super(msg);
     }
 
-    public InstanceException(String message, Throwable cause) {
-        super(message, cause);
+    public InstanceException(int code, String msg) {
+        super(code, msg);
     }
 
-    public InstanceException(Throwable cause) {
-        super(cause);
+    public InstanceException(Throwable throwable) {
+        super(throwable);
     }
 
-    protected InstanceException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public InstanceException(int code, String msg, Throwable throwable) {
+        super(code, msg, throwable);
     }
 }

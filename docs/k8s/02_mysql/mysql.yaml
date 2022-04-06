@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-mysql
+  namespace: ns-dev
+  labels:
+    name: cm-mysql
+data:
+  mysql.root.password: "Roc@2022"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mysql-pvc
+  namespace: ns-dev
+  labels:
+    name: mysql-pvc
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "sc-nfs"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rc-mysql
+  namespace: ns-dev
+  labels:
+    name: rc-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: rc-mysql
+  template:
+    metadata:
+      name: rc-mysql
+      namespace: ns-dev
+      labels:
+        name: rc-mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql
+          ports:
+            - containerPort: 3306
+          env:
+            - name: TZ
+              value: Asia/Shanghai
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: cm-mysql
+                  key: mysql.root.password
+          volumeMounts:
+            - name: rc-mysql-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: rc-mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-mysql
+  namespace: ns-dev
+  labels:
+    name: svc-mysql
+spec:
+  type: NodePort
+  ports:
+    - name: mysql-port
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+      nodePort: 32001
+  selector:
+    name: rc-mysql

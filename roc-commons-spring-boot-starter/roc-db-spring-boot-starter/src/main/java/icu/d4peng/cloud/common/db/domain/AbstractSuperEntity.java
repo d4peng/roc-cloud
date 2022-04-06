@@ -1,8 +1,7 @@
 package icu.d4peng.cloud.common.db.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
-import lombok.Data;
-import lombok.experimental.Accessors;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,8 +13,6 @@ import java.time.LocalDateTime;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Data
-@Accessors(chain = true)
 public abstract class AbstractSuperEntity implements Serializable {
     /**
      * 这个ID是使用雪花算法来生成的ID,使用的是容器中的Bean
@@ -43,4 +40,54 @@ public abstract class AbstractSuperEntity implements Serializable {
      */
     @TableField(exist = false)
     private String tenantId;
+
+    public Long getId() {
+        return id;
+    }
+
+    public AbstractSuperEntity setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
+    }
+
+    public AbstractSuperEntity setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
+        return this;
+    }
+
+    public LocalDateTime getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public AbstractSuperEntity setUpdatedTime(LocalDateTime updatedTime) {
+        this.updatedTime = updatedTime;
+        return this;
+    }
+
+    public LocalDateTime getDeletedTime() {
+        return deletedTime;
+    }
+
+    public AbstractSuperEntity setDeletedTime(LocalDateTime deletedTime) {
+        this.deletedTime = deletedTime;
+        return this;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public AbstractSuperEntity setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("id", id).append("createdTime", createdTime).append("updatedTime", updatedTime).append("deletedTime", deletedTime).append("tenantId", tenantId).toString();
+    }
 }

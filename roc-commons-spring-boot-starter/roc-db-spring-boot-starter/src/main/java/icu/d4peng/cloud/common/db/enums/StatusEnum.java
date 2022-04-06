@@ -1,7 +1,6 @@
 package icu.d4peng.cloud.common.db.enums;
 
 import com.baomidou.mybatisplus.annotation.IEnum;
-import lombok.Getter;
 
 /**
  * <p> StatusEnum:状态枚举
@@ -10,7 +9,6 @@ import lombok.Getter;
  * @version 1.0.0
  * @since 2022-03-27
  */
-@Getter
 public enum StatusEnum implements IEnum<Integer> {
     /**
      * 未知
@@ -37,5 +35,14 @@ public enum StatusEnum implements IEnum<Integer> {
     StatusEnum(Integer value, String description) {
         this.value = value;
         this.description = description;
+    }
+
+    @Override
+    public Integer getValue() {
+        return value;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
