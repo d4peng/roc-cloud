@@ -1,36 +1,24 @@
 package icu.d4peng.cloud.user.dto;
 
-import icu.d4peng.cloud.common.db.request.SuperDTO;
-import icu.d4peng.cloud.user.entity.User;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * <p> AclDTO
+ * <p> RegisterDTO: 注册DTO
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @since 2022-03-27 15:43
+ * @since 2022-04-08
  */
-public class AclDTO extends SuperDTO<User> {
-    /**
-     * 用户名
-     */
+public class RegisterDTO {
     private String username;
-    /**
-     * 密码
-     */
     private String password;
-    /**
-     * 验证码
-     */
     private String code;
-
 
     public String getUsername() {
         return username;
     }
 
-    public AclDTO setUsername(String username) {
+    public RegisterDTO setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -39,7 +27,7 @@ public class AclDTO extends SuperDTO<User> {
         return password;
     }
 
-    public AclDTO setPassword(String password) {
+    public RegisterDTO setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -48,7 +36,7 @@ public class AclDTO extends SuperDTO<User> {
         return code;
     }
 
-    public AclDTO setCode(String code) {
+    public RegisterDTO setCode(String code) {
         this.code = code;
         return this;
     }

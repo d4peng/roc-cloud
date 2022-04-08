@@ -2,39 +2,44 @@ package icu.d4peng.cloud.user.service;
 
 import com.alibaba.fastjson.JSONObject;
 import icu.d4peng.cloud.common.core.vo.ResultVO;
-import icu.d4peng.cloud.user.dto.AclDTO;
+import icu.d4peng.cloud.common.db.service.BaseService;
+import icu.d4peng.cloud.user.dto.UserDTO;
+import icu.d4peng.cloud.user.dto.CaptchaDTO;
+import icu.d4peng.cloud.user.dto.LoginDTO;
+import icu.d4peng.cloud.user.dto.RegisterDTO;
+import icu.d4peng.cloud.user.entity.User;
 
 /**
- * <p> AclService:服务
+ * <p> UserService: 用户服务
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @since 2022-03-27 15:43
+ * @since 2022-04-08
  */
-public interface AclService {
+public interface UserService extends BaseService<User, UserDTO, Long> {
     /**
      * 验证码
      *
-     * @param aclDTO 权限DTO
+     * @param captchaDTO 验证码DTO
      * @return 验证码的base64
      */
-    ResultVO<String> captcha(AclDTO aclDTO);
+    ResultVO<String> captcha(CaptchaDTO captchaDTO);
 
     /**
      * 注册
      *
-     * @param aclDTO 权限DTO
+     * @param registerDTO 注册DTO
      * @return 注册结果
      */
-    ResultVO<String> register(AclDTO aclDTO);
+    ResultVO<String> register(RegisterDTO registerDTO);
 
     /**
      * 登录
      *
-     * @param aclDTO 权限DTO
+     * @param loginDTO 登录DTO
      * @return token信息
      */
-    ResultVO<JSONObject> login(AclDTO aclDTO);
+    ResultVO<JSONObject> login(LoginDTO loginDTO);
 
     /**
      * 用户信息

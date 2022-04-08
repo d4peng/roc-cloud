@@ -5,7 +5,7 @@ import icu.d4peng.cloud.user.enums.StatusEnum;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * <p> User
+ * <p> User:用户
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0

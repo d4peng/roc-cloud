@@ -6,13 +6,13 @@ import icu.d4peng.cloud.user.enums.StatusEnum;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * <p> BaseDTO
+ * <p> UserDTO: 用户DTO
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
  * @since 2022-03-27 15:43
  */
-public class BaseDTO extends SuperDTO<User> {
+public class UserDTO extends SuperDTO<User> {
     /**
      * 用户名
      */
@@ -38,7 +38,7 @@ public class BaseDTO extends SuperDTO<User> {
         return username;
     }
 
-    public BaseDTO setUsername(String username) {
+    public UserDTO setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -47,7 +47,7 @@ public class BaseDTO extends SuperDTO<User> {
         return password;
     }
 
-    public BaseDTO setPassword(String password) {
+    public UserDTO setPassword(String password) {
         this.password = password;
         return this;
     }
@@ -56,7 +56,7 @@ public class BaseDTO extends SuperDTO<User> {
         return nickName;
     }
 
-    public BaseDTO setNickName(String nickName) {
+    public UserDTO setNickName(String nickName) {
         this.nickName = nickName;
         return this;
     }
@@ -65,7 +65,7 @@ public class BaseDTO extends SuperDTO<User> {
         return phone;
     }
 
-    public BaseDTO setPhone(String phone) {
+    public UserDTO setPhone(String phone) {
         this.phone = phone;
         return this;
     }
@@ -74,7 +74,7 @@ public class BaseDTO extends SuperDTO<User> {
         return status;
     }
 
-    public BaseDTO setStatus(StatusEnum status) {
+    public UserDTO setStatus(StatusEnum status) {
         this.status = status;
         return this;
     }

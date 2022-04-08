@@ -1,23 +1,24 @@
-package icu.d4peng.cloud.user.entity;
+package icu.d4peng.cloud.user.dto;
 
-import icu.d4peng.cloud.common.db.domain.AbstractSuperEntity;
+import icu.d4peng.cloud.common.db.request.SuperDTO;
+import icu.d4peng.cloud.user.entity.Role;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * <p> Role:角色
+ * <p> RoleDTO: 权限DTO
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
- * @since 2022-03-27 15:43
+ * @since 2022-04-08
  */
-public class Role extends AbstractSuperEntity {
+public class RoleDTO extends SuperDTO<Role> {
     private String name;
 
     public String getName() {
         return name;
     }
 
-    public Role setName(String name) {
+    public RoleDTO setName(String name) {
         this.name = name;
         return this;
     }

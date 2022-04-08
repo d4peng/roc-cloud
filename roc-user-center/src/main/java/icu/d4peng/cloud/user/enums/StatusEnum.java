@@ -3,7 +3,7 @@ package icu.d4peng.cloud.user.enums;
 import com.baomidou.mybatisplus.annotation.IEnum;
 
 /**
- * <p> StatusEnum
+ * <p> StatusEnum:用户状态枚举
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0

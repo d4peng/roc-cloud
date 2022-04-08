@@ -5,7 +5,7 @@ import icu.d4peng.cloud.user.entity.Role;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * <p> RoleMapper
+ * <p> RoleMapper:RoleMapper
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0

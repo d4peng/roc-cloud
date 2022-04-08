@@ -3,7 +3,7 @@ package icu.d4peng.cloud.user.exception;
 import icu.d4peng.cloud.common.core.exception.AbstractSuperException;
 
 /**
- * <p> UserException
+ * <p> UserException:用户异常
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0

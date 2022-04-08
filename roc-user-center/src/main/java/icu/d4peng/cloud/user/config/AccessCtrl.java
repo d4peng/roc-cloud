@@ -1,4 +1,4 @@
-package icu.d4peng.cloud.user.config;//package icu.d4peng.cloud.user.config;
+//package icu.d4peng.cloud.user.config;
 //
 //import cn.dev33.satoken.stp.StpInterface;
 //import org.springframework.context.annotation.Configuration;

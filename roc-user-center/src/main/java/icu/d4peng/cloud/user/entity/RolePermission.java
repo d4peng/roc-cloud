@@ -4,7 +4,7 @@ import icu.d4peng.cloud.common.db.domain.AbstractSuperEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * <p> RolePermission
+ * <p> RolePermission:RolePermission关联
  *
  * @author <a href="mailto:d4peng@qq.com">d4peng</a>
  * @version 1.0.0
