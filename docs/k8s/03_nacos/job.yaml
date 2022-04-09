@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: job-nacos
+  namespace: ns-dev
+  labels:
+    name: job-nacos
+data:
+  init: |
+    yum install -y epel-release
+    yum install -y mysql
+    mysql -uroot -pRoc@2022 -f xxx.sql
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-nacos
+  namespace: ns-dev
+  labels:
+    name: job-nacos
+spec:
+  completions: 1
+  parallelism: 1
+  activeDeadlineSeconds: 600
+  backoffLimit: 1
+  manualSelector: true
+  selector:
+    matchLabels:
+      name: job-nacos
+  template:
+    metadata:
+      name: job-nacos
+      namespace: ns-dev
+      labels:
+        name: job-nacos
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: centos7
+          image: centos:7
+          command:
+            - "/bin/bash"
+            - "/tmp/init.sh"
+          env:
+            - name: REDIS_REPLICAS
+              value: "6"
+          volumeMounts:
+            - name: redis-sh
+              mountPath: /tmp
+      volumes:
+        - name: redis-sh
+          configMap:
+            name: job-nacos
+            items:
+              - key: init
+                path: "init.sh"

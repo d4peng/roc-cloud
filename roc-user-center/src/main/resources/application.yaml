@@ -1,6 +1,11 @@
 spring:
   application:
     name: roc-user-center
+  sql:
+    init:
+      schema-locations:
+        - "classpath*:sql/schema.sql"
+      mode: ALWAYS
 server:
   port: 9090
 roc:

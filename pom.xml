@@ -11,6 +11,7 @@
         <module>roc-commons-spring-boot-starter</module>
         <module>roc-user-center</module>
         <module>roc-message-center</module>
+        <module>roc-cache-center</module>
     </modules>
     <packaging>pom</packaging>
 
